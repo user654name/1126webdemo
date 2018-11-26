@@ -1,0 +1,12 @@
+server:
+  port: 10033
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/devops?serverTimezone=GMT
+    username: root
+    password: 666888
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: true
+    prefix: classpath:/templates/
+    mode: HTML5
