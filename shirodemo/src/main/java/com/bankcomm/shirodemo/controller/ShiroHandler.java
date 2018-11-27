@@ -21,6 +21,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/shiro")
 public class ShiroHandler {
 
+    /**
+     * 登录入口
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     @RequestMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
 
@@ -28,13 +35,14 @@ public class ShiroHandler {
 
         Subject currentUser = SecurityUtils.getSubject();
 
+        // 如果当前用户已认证(登录)则跳过
         if (!currentUser.isAuthenticated()) {
             // 把用户名和密码封装为 UsernamePasswordToken 对象
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             // rememberme
             token.setRememberMe(false);
             try {
-                // 执行登录.
+                // 执行登录
                 currentUser.login(token);
             }
             // 所有认证时异常的父类.
@@ -43,6 +51,7 @@ public class ShiroHandler {
                 System.out.println("登录失败: " + ae.getMessage());
             }
         }
+//        return "";
         return "login-fail";
 
     }

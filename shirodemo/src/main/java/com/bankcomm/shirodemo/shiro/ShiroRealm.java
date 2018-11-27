@@ -10,7 +10,9 @@ import org.apache.shiro.util.ByteSource;
  * @time 21:55
  * @package com.bankcomm.shirodemo.shiro
  * @project 1126webdemo
- * @description
+ *
+ *
+ * @description 身份认证Realm
  */
 public class ShiroRealm extends AuthenticatingRealm {
 

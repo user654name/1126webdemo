@@ -17,6 +17,8 @@ import java.util.Set;
  * @date 2018/11/26
  * @package com.bankcomm.shirodemo.config
  * @project 1126webdemo
+ *
+ * @description 授权Realm
  */
 @Component
 public class CustomRealm extends AuthorizingRealm {
@@ -52,7 +54,7 @@ public class CustomRealm extends AuthorizingRealm {
     }
 
     /**
-     * 获取授权信息
+     * 获取授权信息(获取用户对应的权限)
      *
      * @param principalCollection
      * @return
