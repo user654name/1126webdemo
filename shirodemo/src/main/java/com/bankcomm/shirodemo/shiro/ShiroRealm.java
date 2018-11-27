@@ -16,6 +16,7 @@ import org.apache.shiro.util.ByteSource;
  */
 public class ShiroRealm extends AuthenticatingRealm {
 
+
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(
             AuthenticationToken authenticationToken) throws AuthenticationException {
