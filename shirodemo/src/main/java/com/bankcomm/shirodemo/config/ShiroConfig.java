@@ -46,9 +46,6 @@ public class ShiroConfig {
     @Bean
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
 
-
-
-
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         // 必须设置 SecurityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
@@ -84,6 +81,9 @@ public class ShiroConfig {
 
     /**
      * 注入 securityManager
+     *
+     * @param customRealm 【重要】securityManager依赖于这个参数，若不实现，项目无法启动
+     * @return
      */
     @Bean
     public SecurityManager securityManager(CustomRealm customRealm) {
