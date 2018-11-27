@@ -1,6 +1,7 @@
 package com.bankcomm.shirodemo.shiro;
 
 
+import com.bankcomm.shirodemo.config.ShiroConfig;
 import com.bankcomm.shirodemo.mapper.UserMapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -40,8 +41,10 @@ public class CustomRealm extends AuthorizingRealm {
 
     /**
      * 获取身份验证信息
-     * Shiro中，最终是通过 Realm 来获取应用程序中的用户、角色及权限信息的。
+     * Shiro中，最终是通过 Realm 来获取应用程序中的用户、角色及权限信息的
+     * 若使用密码非明文存储 需要调用SimpleAuthenticationInfo的4参数的方法
      *
+     * @see ShiroConfig 加密策略配置
      * @param authenticationToken 用户身份信息 token
      * @return 返回封装了用户信息的 AuthenticationInfo 实例
      */
@@ -85,6 +88,12 @@ public class CustomRealm extends AuthorizingRealm {
         String realmName = getName();
         //4). 盐值
         String salt = "自定义盐值";
+        /*
+            ByteSource - 接口
+            Util - 内部类
+            bytes() - 返回SimpleByteSource
+            SimpleByteSource - 实现ByteSource接口
+          */
         ByteSource credentialsSalt = ByteSource.Util.bytes(salt);
 
         SimpleAuthenticationInfo info = null;
