@@ -1,7 +1,6 @@
 package com.bankcomm.shirodemo.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -13,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-    @RequestMapping("/home")
+    @RequestMapping("/guest/home")
     public String toHome() {
-        return "home";
+        return "/guest/home";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/guest/login")
     public String toPage1() {
-        return "login";
+        return "/guest/login";
     }
 
-    @RequestMapping("/notLogin")
+    @RequestMapping("/guest/notLogin")
     public String toPage2() {
-        return "notLogin";
+        return "/guest/notLogin";
     }
 
 
