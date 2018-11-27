@@ -83,8 +83,9 @@ public class CustomRealm extends AuthorizingRealm {
 
         //3). realmName: 当前 realm 对象的 name. 调用父类的 getName() 方法即可
         String realmName = getName();
-        //4). 盐值.
-        ByteSource credentialsSalt = ByteSource.Util.bytes(username);
+        //4). 盐值
+        String salt = "自定义盐值";
+        ByteSource credentialsSalt = ByteSource.Util.bytes(salt);
 
         SimpleAuthenticationInfo info = null;
         info = new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName);
