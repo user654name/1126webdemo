@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/shiro")
-public class ShiroHandler {
+public class ShiroLoginHandler {
 
-    private final transient Logger log = LoggerFactory.getLogger(ShiroHandler.class);
+    private final transient Logger log = LoggerFactory.getLogger(ShiroLoginHandler.class);
 
     /**
      * 登录入口
@@ -46,7 +46,9 @@ public class ShiroHandler {
             // rememberme
             token.setRememberMe(false);
             try {
-                // 执行登录
+                //首先调用 Subject.login(token) 进行登录，
+                // 其会自动委托给 Security Manager，
+                // 调用之前必须通过 SecurityUtils.setSecurityManager() 设置；
                 currentUser.login(token);
             }
             // 若没有指定的账户, 则 shiro 将会抛出 UnknownAccountException 异常.
@@ -72,9 +74,7 @@ public class ShiroHandler {
                 return "/guest/login-fail";
             }
         }
-//        return "";
         return "login-success";
-
     }
 }
 

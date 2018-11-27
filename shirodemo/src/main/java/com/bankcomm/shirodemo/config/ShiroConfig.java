@@ -3,6 +3,7 @@ package com.bankcomm.shirodemo.config;
 
 
 import com.bankcomm.shirodemo.shiro.CustomRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -29,7 +30,7 @@ public class ShiroConfig {
     private  final transient Logger log = LoggerFactory.getLogger(ShiroConfig.class);
 
     /**
-     * 过滤器默认权限表 {anon=anon, authc=authc, authcBasic=authcBasic, logout=logout,
+     * 过滤器默认权限表 {anon=anon 匿名访问, authc=authc, authcBasic=authcBasic, 登出logout=logout,
      * noSessionCreation=noSessionCreation, perms=perms, port=port,
      * rest=rest, roles=roles, ssl=ssl, user=user}
      * <p>
@@ -91,4 +92,25 @@ public class ShiroConfig {
         securityManager.setRealm(customRealm);
         return securityManager;
     }
+
+    /**
+     *
+     * 使用密码非明文存储
+     *
+     * @return
+     */
+    @Bean("hashedCredentialsMatcher")
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        //指定加密方式为MD5
+        credentialsMatcher.setHashAlgorithmName("MD5");
+        //加密次数 64
+        credentialsMatcher.setHashIterations(64);
+        credentialsMatcher.setStoredCredentialsHexEncoded(true);
+        return credentialsMatcher;
+    }
+
+
+
+
 }
