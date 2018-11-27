@@ -27,7 +27,7 @@ public class ShiroRealm extends AuthenticatingRealm {
         System.out.println("从数据库中获取 username: " + username + " 所对应的用户信息.");
 
         //4. 若用户不存在, 则可以抛出 UnknownAccountException 异常
-        // "unknown".equals(username)这只是举例子 假设unknown用户不存在
+        // "unknown".equals(username)这只是举例子 假设unknown用户
         if ("unknown".equals(username)) {
             throw new UnknownAccountException("用户不存在!");
         }

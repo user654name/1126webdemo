@@ -1,5 +1,4 @@
-package com.bankcomm.shirodemo.config;
-
+package com.bankcomm.shirodemo.shiro;
 
 
 import com.bankcomm.shirodemo.mapper.UserMapper;
@@ -9,7 +8,6 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;

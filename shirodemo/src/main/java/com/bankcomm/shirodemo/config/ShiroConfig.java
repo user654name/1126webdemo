@@ -2,6 +2,7 @@ package com.bankcomm.shirodemo.config;
 
 
 
+import com.bankcomm.shirodemo.shiro.CustomRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
