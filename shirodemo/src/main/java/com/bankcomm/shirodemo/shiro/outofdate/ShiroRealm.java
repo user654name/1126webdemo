@@ -15,7 +15,7 @@
 // *
 // * @description 身份认证Realm
 // */
-////@Component
+//@Component
 //public class ShiroRealm extends AuthenticatingRealm {
 //
 //

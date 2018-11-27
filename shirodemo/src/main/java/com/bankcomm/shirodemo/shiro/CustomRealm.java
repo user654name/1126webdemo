@@ -20,9 +20,11 @@ import java.util.Set;
  * @package com.bankcomm.shirodemo.config
  * @project 1126webdemo
  *
- * Realm必须被实现
- * 必须配置组件注解
- * 注入SecurityManager时，依赖这个类
+ * CustomRealm - 自定义Realm实现类
+ *
+ * Realm必须被实现(AuthorizingRealm是抽象类)
+ * 必须配置组件注解(@Component作为组件提供给Spring-IoC管理)
+ * 注入SecurityManager时，依赖这个Realm实现类
  */
 @Component
 public class CustomRealm extends AuthorizingRealm {
@@ -30,11 +32,11 @@ public class CustomRealm extends AuthorizingRealm {
 //    @Autowired
     private final UserMapper userMapper = null;
 
-
-//    @Autowired
-//    public CustomRealm(UserMapper userMapper) {
-//        this.userMapper = userMapper;
-//    }
+//
+////    @Autowired
+////    public CustomRealm(UserMapper userMapper) {
+////        this.userMapper = userMapper;
+////    }
 
     /**
      * 获取身份验证信息

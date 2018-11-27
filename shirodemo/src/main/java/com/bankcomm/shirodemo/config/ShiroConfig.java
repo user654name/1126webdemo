@@ -27,6 +27,7 @@ import java.util.Map;
 public class ShiroConfig {
 
 
+
     private  final transient Logger log = LoggerFactory.getLogger(ShiroConfig.class);
 
     /**
@@ -88,7 +89,7 @@ public class ShiroConfig {
     @Bean
     public SecurityManager securityManager(CustomRealm customRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        // 设置realm.
+        // 设置自定义的realm实现
         securityManager.setRealm(customRealm);
         return securityManager;
     }
@@ -102,9 +103,9 @@ public class ShiroConfig {
     @Bean("hashedCredentialsMatcher")
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
-        //指定加密方式为MD5
+        // 指定加密方式为MD5
         credentialsMatcher.setHashAlgorithmName("MD5");
-        //加密次数 64
+        // 加密次数 64
         credentialsMatcher.setHashIterations(64);
         credentialsMatcher.setStoredCredentialsHexEncoded(true);
         return credentialsMatcher;
