@@ -108,8 +108,9 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // setLoginUrl 如果不设置值，默认会自动寻找Web工程根目录下的"/login.jsp"页面 或 "/login" 映射
         shiroFilterFactoryBean.setLoginUrl("/guest/login");
-        // 设置无权限时跳转的 url;
+        // 无权限时 跳转的
         shiroFilterFactoryBean.setUnauthorizedUrl("/guest/notRole");
+        // 登录成功
         shiroFilterFactoryBean.setSuccessUrl("/login-success");
 
         // 设置拦截器
@@ -122,13 +123,15 @@ public class ShiroConfig {
 //        filterChainDefinitionMap.put("/admin/**", "roles[admin]");
         //开放登陆接口
 
-//        filterChainDefinitionMap.put("/guest/home", "authc");
+        // filterChainDefinitionMap.put("/guest/home", "authc");
         filterChainDefinitionMap.put("/guest/*", "anon");
-//        filterChainDefinitionMap.put("/guest/register", "anon");
+        // filterChainDefinitionMap.put("/guest/register", "anon");
         filterChainDefinitionMap.put("/shiro/register", "anon");
+        filterChainDefinitionMap.put("/shiro/login", "anon");
         filterChainDefinitionMap.put("/shiro/logout", "logout");
+        //加入权限页面2018年11月29日 06:12:49
+//        filterChainDefinitionMap.put("/admin/adminpage", "roles[admin]");
         filterChainDefinitionMap.put("/shiro/*", "authc");
-
 
         //主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
         filterChainDefinitionMap.put("/**", "authc");

@@ -79,7 +79,9 @@ public class ShiroLoginHandler {
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password) {
 
+        System.out.println("用户执行登录");
         System.out.println("username = " + username);
+        System.out.println("password = " + password);
 
         Subject currentUser = SecurityUtils.getSubject();
 
@@ -116,10 +118,13 @@ public class ShiroLoginHandler {
             // 所有认证时异常的父类.
             catch (AuthenticationException ae) {
                 //unexpected condition?  error?
+                System.out.println("登录异常了" );
+                System.out.println("即将跳转到 /guest/login-fail" );
                 return "/guest/login-fail";
             }
         }
-        return "login-success";
+        System.out.println("即将跳转到 authc/login-success" );
+        return "authc/login-success";
     }
 
     @RequestMapping("/logout")
