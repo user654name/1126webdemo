@@ -4,7 +4,6 @@
     <list default="true" id="0d1a96ea-3ef1-4ffb-a665-754dd2b3b189" name="Default" comment="2018年11月28日 17:38:19&#10;下班前保存代码 UserSeivice 写了一个密码对比的方法 还没有写内容&#10;Controller里已经写好了大纲 之后再继续完成">
       <change beforePath="" afterPath="$PROJECT_DIR$/shirodemo/src/test/java/com/bankcomm/shirodemo/mapper/UserMapperTest.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/pom.xml" afterPath="$PROJECT_DIR$/shirodemo/pom.xml" />
       <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/UserMapper.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/UserMapper.java" />
       <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/UserMapper.xml" afterPath="$PROJECT_DIR$/shirodemo/src/main/resources/com.bankcomm.shirodemo.mapper/UserMapper.xml" />
       <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/service/UserService.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/service/UserService.java" />
@@ -619,7 +618,7 @@
       <updated>1543306884620</updated>
       <workItem from="1543306885865" duration="17435000" />
       <workItem from="1543367339395" duration="24840000" />
-      <workItem from="1543411368074" duration="4471000" />
+      <workItem from="1543411368074" duration="4511000" />
     </task>
     <task id="LOCAL-00001" summary="2018年11月27日 16:25:05 处理了无法登录的bug 因为表单的action没有权限 被过滤器过滤无法到达Controller中">
       <created>1543307162381</created>
@@ -810,7 +809,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543397980407</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="2018年11月28日 22:37:34 pom增加注解">
+      <created>1543415878775</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1543415878775</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -846,7 +852,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46746000" />
+    <option name="totallyTimeSpent" value="46786000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="211" y="-9" width="1718" height="1098" extended-state="6" />
@@ -939,7 +945,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2018年11月28日 00:31:54 &#10;之前写了两个Realm实现类&#10;现在废弃（注释）掉ShiroRealm&#10;只使用CustomRealm" />
     <MESSAGE value="2018年11月28日 01:06:57 增加一些注释信息" />
     <MESSAGE value="2018年11月28日 01:10:37 对盐值修改" />
     <MESSAGE value="2018年11月28日 07:27:10 增加CustomRealm.java文档注释" />
@@ -964,7 +969,8 @@
     <MESSAGE value="2018年11月28日 17:13:06&#10;1 调整前端页面url&#10;2 ShiroConfig 优化了过滤器的规则" />
     <MESSAGE value="2018年11月28日 17:19:04&#10;删除CustomRealm.java多余代码 优化导包" />
     <MESSAGE value="2018年11月28日 17:38:19&#10;下班前保存代码 UserSeivice 写了一个密码对比的方法 还没有写内容&#10;Controller里已经写好了大纲 之后再继续完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="2018年11月28日 17:38:19&#10;下班前保存代码 UserSeivice 写了一个密码对比的方法 还没有写内容&#10;Controller里已经写好了大纲 之后再继续完成" />
+    <MESSAGE value="2018年11月28日 22:37:34 pom增加注解" />
+    <option name="LAST_COMMIT_MESSAGE" value="2018年11月28日 22:37:34 pom增加注解" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

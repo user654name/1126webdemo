@@ -1,5 +1,7 @@
 package com.bankcomm.shirodemo.service;
 
+import com.bankcomm.shirodemo.bean.User;
+
 /**
  * @author Tianqi.Zhang
  * @date 2018/11/28
@@ -16,5 +18,5 @@ public interface UserService {
      * @param username
      * @return true 代表用户名已经存在
      */
-    boolean findUserByUsername(String username);
+    User findUserByUsername(String username);
 }

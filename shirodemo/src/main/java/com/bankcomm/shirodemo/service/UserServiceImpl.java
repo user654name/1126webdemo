@@ -1,5 +1,8 @@
 package com.bankcomm.shirodemo.service;
 
+import com.bankcomm.shirodemo.bean.User;
+import com.bankcomm.shirodemo.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,10 +16,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
-    public boolean findUserByUsername(String username) {
+    public User findUserByUsername(String username) {
+        return userMapper.selectByUsername(username);
 
-
-        return false;
     }
 }
