@@ -2,6 +2,7 @@ package com.bankcomm.shirodemo.shiro;
 
 
 import com.bankcomm.shirodemo.config.ShiroConfig;
+import com.bankcomm.shirodemo.controller.ShiroLoginHandler;
 import com.bankcomm.shirodemo.mapper.UserMapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -10,6 +11,8 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -33,6 +36,7 @@ public class CustomRealm extends AuthorizingRealm {
 //    @Autowired
     private final UserMapper userMapper = null;
 
+    private final Logger log = LoggerFactory.getLogger(CustomRealm.class);
 //
 ////    @Autowired
 ////    public CustomRealm(UserMapper userMapper) {
@@ -78,10 +82,10 @@ public class CustomRealm extends AuthorizingRealm {
         Object principal = username;
         //2). credentials: 密码.
         Object credentials = null;
-        if ("admin".equals(username)) {
-            credentials = "038bdaf98f2037b31f1e75b5b4c9b26e";
+        if ("root".equals(username)) {
+            credentials = "666888";
         } else if ("user".equals(username)) {
-            credentials = "098d2c478e9c11555ce2823231e02ec1";
+            credentials = "123";
         }
 
         //3). realmName: 当前 realm 对象的 name. 调用父类的 getName() 方法即可
@@ -97,7 +101,9 @@ public class CustomRealm extends AuthorizingRealm {
         ByteSource credentialsSalt = ByteSource.Util.bytes(salt);
 
         SimpleAuthenticationInfo info = null;
-        info = new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName);
+//        info = new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName);
+        info= new SimpleAuthenticationInfo(principal,credentials,realmName);
+        System.out.println("SimpleAuthenticationInfo info = " + info);
         return info;
         //        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 //        // 从数据库获取对应用户名密码的用户
@@ -118,14 +124,15 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        System.out.println("————权限认证————");
+        log.info("———— 进入 权限认证 ————");
         String username = (String) SecurityUtils.getSubject().getPrincipal();
+        System.out.println("————权限认证————"+username);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         //获得该用户角色
-        String role = userMapper.getRole(username);
+//        String role = userMapper.getRole(username);
         Set<String> set = new HashSet<>();
         //需要将 role 封装到 Set 作为 info.setRoles() 的参数
-        set.add(role);
+//        set.add(role);
         //设置该用户拥有的角色
         info.setRoles(set);
         return info;

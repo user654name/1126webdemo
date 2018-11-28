@@ -3,7 +3,6 @@ package com.bankcomm.shirodemo.config;
 
 
 import com.bankcomm.shirodemo.shiro.CustomRealm;
-import com.bankcomm.shirodemo.shiro.SecondRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
@@ -62,10 +61,10 @@ public class ShiroConfig {
         return defaultAdvisorAutoProxy;
     }
 
-    /**
-     * 缓存配置
-     * @return
-     */
+//    /**
+//     * 缓存配置
+//     * @return
+//     */
 //    @Bean
 //    public EhCacheManager getCacheManager() {
 //        EhCacheManager cacheManager = new EhCacheManager();

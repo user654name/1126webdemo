@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d1a96ea-3ef1-4ffb-a665-754dd2b3b189" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/bean/User.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/User.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/UserMapper.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/shirodemo/pom.xml" afterPath="$PROJECT_DIR$/shirodemo/pom.xml" />
       <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/config/ShiroConfig.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/config/ShiroConfig.java" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/UrlController.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/UrlController.java" />
+      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/ShiroLoginHandler.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/ShiroLoginHandler.java" />
+      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/UserMapper.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/UserMapper.java" />
+      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java" />
       <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/SecondRealm.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/SecondRealm.java" />
+      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/home.html" afterPath="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/home.html" />
+      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/login.html" afterPath="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/login.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/shirodemo/target/" />
@@ -23,28 +31,84 @@
       <file leaf-file-name="CustomRealm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+            <state relative-caret-position="173">
+              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SecondRealm.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/SecondRealm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShiroConfig.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShiroConfig.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/config/ShiroConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="882">
-              <caret line="186" column="49" lean-forward="true" selection-start-line="186" selection-start-column="49" selection-end-line="186" selection-end-column="49" />
+            <state relative-caret-position="27">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/bean/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/UserMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1543386594272" expanded="true" signature="1666:1772" ph="select from table_user" />
+                <marker date="1543386594272" expanded="true" signature="2055:2115" ph="delete from table_user... " />
+                <marker date="1543386594272" expanded="true" signature="2403:2775" ph="insert into table_user... " />
+                <marker date="1543386594272" expanded="true" signature="4711:5457" ph="update table_user... " />
+                <marker date="1543386594272" expanded="true" signature="5757:6143" ph="update table_user... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleCredentialsMatcher.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-core/1.3.2/shiro-core-1.3.2.jar!/org/apache/shiro/authc/credential/SimpleCredentialsMatcher.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="382">
+              <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -54,53 +118,21 @@
         <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/UrlController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="333">
-              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShirodemoApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/ShirodemoApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="10" column="10" lean-forward="false" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShiroLoginHandler.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ShiroLoginHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/ShiroLoginHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state relative-caret-position="160">
+              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding>
-                <element signature="e#2892#2893#0" expanded="true" />
-                <element signature="e#2930#2931#0" expanded="true" />
+                <element signature="e#2938#2939#0" expanded="true" />
+                <element signature="e#2976#2977#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login-success.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/login-success.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="24" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -111,12 +143,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>CacheManager</find>
+      <find>transient</find>
+      <find>logger</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -135,23 +170,26 @@
       <list>
         <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/ShiroHandler.java" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/ShiroRealm.java" />
-        <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java" />
         <option value="$PROJECT_DIR$/shirodemo/note.txt" />
-        <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/UserMapper.java" />
         <option value="$PROJECT_DIR$/shirodemo/.gitignore" />
-        <option value="$PROJECT_DIR$/shirodemo/pom.xml" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/resources/2312.xml" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/resources/ehcache.xml" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/HomeController.java" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/notlogin.html" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/logout.html" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/notRole.html" />
-        <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/ShiroLoginHandler.java" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/login-success.html" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/ShirodemoApplication.java" />
+        <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/UrlController.java" />
+        <option value="$PROJECT_DIR$/shirodemo/pom.xml" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/SecondRealm.java" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/config/ShiroConfig.java" />
-        <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/UrlController.java" />
+        <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/UserMapper.java" />
+        <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/bean/User.java" />
+        <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/ShiroLoginHandler.java" />
+        <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java" />
+        <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/login.html" />
+        <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/home.html" />
       </list>
     </option>
   </component>
@@ -245,6 +283,17 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="bankcomm" type="462c0819:PsiDirectoryNode" />
               <item name="shirodemo" type="462c0819:PsiDirectoryNode" />
+              <item name="bean" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="1126webdemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shirodemo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="bankcomm" type="462c0819:PsiDirectoryNode" />
+              <item name="shirodemo" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -322,12 +371,13 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="RequestMappingsPanelOrder2" value="2" />
     <property name="SearchEverywhereHistoryKey" value="CacheManager&#9;FILE&#9;jar://C:/Users/ztqzt/.m2/repository/org/springframework/spring-context/5.1.2.RELEASE/spring-context-5.1.2.RELEASE.jar!/org/springframework/cache/CacheManager.class&#10;logger&#9;PSI&#9;JAVA://org.slf4j.Logger&#10;credentialsMatcher&#9;PSI&#9;JAVA://org.apache.shiro.authc.credential.CredentialsMatcher" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea/libraries" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\JavaProject\1126ShiroWebDemo\1126webdemo\shirodemo\src\main\java\com\bankcomm\shirodemo\mapper" />
       <recent name="D:\Users\JavaProject\1126ShiroWebDemo\1126webdemo\shirodemo\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -463,7 +513,7 @@
       <option name="presentableId" value="Default" />
       <updated>1543306884620</updated>
       <workItem from="1543306885865" duration="17435000" />
-      <workItem from="1543367339395" duration="11550000" />
+      <workItem from="1543367339395" duration="15595000" />
     </task>
     <task id="LOCAL-00001" summary="2018年11月27日 16:25:05 处理了无法登录的bug 因为表单的action没有权限 被过滤器过滤无法到达Controller中">
       <created>1543307162381</created>
@@ -612,11 +662,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543382676843</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="2018年11月28日 13:42:41 注释了第二个Realm">
+      <created>1543383785926</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1543383785926</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28985000" />
+    <option name="totallyTimeSpent" value="33030000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="211" y="-9" width="1718" height="1098" extended-state="6" />
@@ -632,7 +689,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24957459" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25340313" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39581153" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -729,7 +786,8 @@
     <MESSAGE value="2018年11月28日 11:16:53 经过测试确认ehcache.xml会被SpringBoot读取" />
     <MESSAGE value="2018年11月28日 11:19:26 暂时不开启缓存" />
     <MESSAGE value="2018年11月28日 13:22:54 &#10;1 增加启动类注解配置 可用来忽略数据库源的状态下启动项目&#10;2 新增页面以及过滤器配置&#10;3 将HomeController 改名为 UrlController" />
-    <option name="LAST_COMMIT_MESSAGE" value="2018年11月28日 13:22:54 &#10;1 增加启动类注解配置 可用来忽略数据库源的状态下启动项目&#10;2 新增页面以及过滤器配置&#10;3 将HomeController 改名为 UrlController" />
+    <MESSAGE value="2018年11月28日 13:42:41 注释了第二个Realm" />
+    <option name="LAST_COMMIT_MESSAGE" value="2018年11月28日 13:42:41 注释了第二个Realm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -760,19 +818,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java</url>
-          <line>101</line>
+          <line>107</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java</url>
-          <line>120</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java</url>
-          <line>54</line>
+          <line>58</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
@@ -782,54 +834,13 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-core/1.3.2/shiro-core-1.3.2.jar!/org/apache/shiro/mgt/RealmSecurityManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="23" column="16" lean-forward="false" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-          <folding>
-            <marker date="1543307161682" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1543307161682" expanded="false" signature="144:480" ph="..." />
-            <marker date="1543307161682" expanded="true" signature="631:638" ph="{}" />
-            <marker date="1543307161682" expanded="true" signature="678:946" ph="{...}" />
-            <marker date="1543307161682" expanded="true" signature="1000:1361" ph="{...}" />
-            <marker date="1543307161682" expanded="true" signature="1399:1486" ph="{...}" />
-            <marker date="1543307161682" expanded="false" signature="1528:1539" ph=" { " />
-            <marker date="1543307161682" expanded="false" signature="1558:1564" ph=" }" />
-            <marker date="1543307161682" expanded="true" signature="1613:2121" ph="{...}" />
-            <marker date="1543307161682" expanded="true" signature="2166:2642" ph="{...}" />
-            <marker date="1543307161682" expanded="true" signature="2686:2773" ph="{...}" />
-            <marker date="1543307161682" expanded="true" signature="2813:2892" ph="{...}" />
-            <marker date="1543307161682" expanded="true" signature="2920:3030" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-core/1.3.2/shiro-core-1.3.2.jar!/org/apache/shiro/mgt/SecurityManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-          <folding>
-            <marker date="1543307161682" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1543307161682" expanded="false" signature="144:470" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/ShirodemoApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/ShiroLoginHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1161">
           <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding>
-            <element signature="e#2892#2893#0" expanded="true" />
-            <element signature="e#2930#2931#0" expanded="true" />
+            <element signature="e#2938#2939#0" expanded="true" />
+            <element signature="e#2976#2977#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -862,13 +873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
           <caret line="321" column="0" lean-forward="false" selection-start-line="321" selection-start-column="0" selection-end-line="321" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1054,14 +1058,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/UserMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
@@ -1168,14 +1164,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shirodemo/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="69" column="27" lean-forward="false" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shirodemo/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1234,22 +1222,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-core/1.3.2/shiro-core-1.3.2.jar!/org/apache/shiro/authc/credential/SimpleCredentialsMatcher.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="999">
-          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/login-success.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
@@ -1258,29 +1230,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/ShiroLoginHandler.java">
+    <entry file="file://$PROJECT_DIR$/shirodemo/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding>
-            <element signature="e#2892#2893#0" expanded="true" />
-            <element signature="e#2930#2931#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        <state relative-caret-position="295">
+          <caret line="72" column="22" lean-forward="false" selection-start-line="72" selection-start-column="22" selection-end-line="72" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/SecondRealm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+        <state relative-caret-position="432">
+          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/UserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/config/ShiroConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/bean/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1288,16 +1281,65 @@
     <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/UrlController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/config/ShiroConfig.java">
+    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="186" column="49" lean-forward="true" selection-start-line="186" selection-start-column="49" selection-end-line="186" selection-end-column="49" />
+        <state relative-caret-position="432">
+          <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/mapper/UserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1543386594272" expanded="true" signature="1666:1772" ph="select from table_user" />
+            <marker date="1543386594272" expanded="true" signature="2055:2115" ph="delete from table_user... " />
+            <marker date="1543386594272" expanded="true" signature="2403:2775" ph="insert into table_user... " />
+            <marker date="1543386594272" expanded="true" signature="4711:5457" ph="update table_user... " />
+            <marker date="1543386594272" expanded="true" signature="5757:6143" ph="update table_user... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-core/1.3.2/shiro-core-1.3.2.jar!/org/apache/shiro/authc/credential/SimpleCredentialsMatcher.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/ShiroLoginHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#2938#2939#0" expanded="true" />
+            <element signature="e#2976#2977#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

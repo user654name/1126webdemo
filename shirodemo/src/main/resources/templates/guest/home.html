@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
     <title>HomePage</title>
 </head>
 <body>
 <h1 align="center">Home Page</h1>
-
+<h3>页面登陆后可查看</h3>
+<!--<shiro:guest>-->
+    <!--欢迎游客访问，<a href="${pageContext.request.contextPath}/login.jsp">登录</a>-->
+<!--</shiro:guest>&nbsp;-->
 
 </body>
 </html>
