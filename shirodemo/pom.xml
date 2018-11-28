@@ -63,6 +63,12 @@
         <!--</dependency>-->
 
 
+        <!--使用EnCache作为缓存技术-->
+        <!--ehcache.xml放在类路径下SpringBoot会自动扫描-->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
