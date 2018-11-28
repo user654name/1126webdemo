@@ -1,114 +1,116 @@
-<ehcache>
-    <!--
-    输入无意义汉字 测试SpringBoot是否扫描到文件
-    结论是会自动扫描2018年11月28日 11:16:41
-    -->
-    <!-- Sets the path to the directory where cache .data files are created.
+<!--<ehcache>-->
+    <!--&lt;!&ndash;-->
+    <!--输入无意义汉字 测试SpringBoot是否扫描到文件-->
+    <!--结论是会自动扫描2018年11月28日 11:16:41-->
+    <!--经过测试，注释掉此文件全部内容-->
+    <!--不会影响项目启动2018年11月28日 11:19:18-->
+    <!--&ndash;&gt;-->
+    <!--&lt;!&ndash; Sets the path to the directory where cache .data files are created.-->
 
-         If the path is a Java System Property it is replaced by
-         its value in the running VM.
+         <!--If the path is a Java System Property it is replaced by-->
+         <!--its value in the running VM.-->
 
-         The following properties are translated:
-         user.home - User's home directory
-         user.dir - User's current working directory
-         java.io.tmpdir - Default temp file path -->
-    <diskStore path="java.io.tmpdir"/>
-    
-    <cache name="authorizationCache"
-           eternal="false"
-           timeToIdleSeconds="3600"
-           timeToLiveSeconds="0"
-           overflowToDisk="false"
-           statistics="true">
-    </cache>
+         <!--The following properties are translated:-->
+         <!--user.home - User's home directory-->
+         <!--user.dir - User's current working directory-->
+         <!--java.io.tmpdir - Default temp file path &ndash;&gt;-->
+    <!--<diskStore path="java.io.tmpdir"/>-->
 
-    <cache name="authenticationCache"
-           eternal="false"
-           timeToIdleSeconds="3600"
-           timeToLiveSeconds="0"
-           overflowToDisk="false"
-           statistics="true">
-    </cache>
+    <!--<cache name="authorizationCache"-->
+           <!--eternal="false"-->
+           <!--timeToIdleSeconds="3600"-->
+           <!--timeToLiveSeconds="0"-->
+           <!--overflowToDisk="false"-->
+           <!--statistics="true">-->
+    <!--</cache>-->
 
-    <cache name="shiro-activeSessionCache"
-           eternal="false"
-           timeToIdleSeconds="3600"
-           timeToLiveSeconds="0"
-           overflowToDisk="false"
-           statistics="true">
-    </cache>
+    <!--<cache name="authenticationCache"-->
+           <!--eternal="false"-->
+           <!--timeToIdleSeconds="3600"-->
+           <!--timeToLiveSeconds="0"-->
+           <!--overflowToDisk="false"-->
+           <!--statistics="true">-->
+    <!--</cache>-->
 
-    <!--Default Cache configuration. These will applied to caches programmatically created through
-        the CacheManager.
+    <!--<cache name="shiro-activeSessionCache"-->
+           <!--eternal="false"-->
+           <!--timeToIdleSeconds="3600"-->
+           <!--timeToLiveSeconds="0"-->
+           <!--overflowToDisk="false"-->
+           <!--statistics="true">-->
+    <!--</cache>-->
 
-        The following attributes are required for defaultCache:
+    <!--&lt;!&ndash;Default Cache configuration. These will applied to caches programmatically created through-->
+        <!--the CacheManager.-->
 
-        maxInMemory       - Sets the maximum number of objects that will be created in memory
-        eternal           - Sets whether elements are eternal. If eternal,  timeouts are ignored and the element
-                            is never expired.
-        timeToIdleSeconds - Sets the time to idle for an element before it expires. Is only used
-                            if the element is not eternal. Idle time is now - last accessed time
-        timeToLiveSeconds - Sets the time to live for an element before it expires. Is only used
-                            if the element is not eternal. TTL is now - creation time
-        overflowToDisk    - Sets whether elements can overflow to disk when the in-memory cache
-                            has reached the maxInMemory limit.
+        <!--The following attributes are required for defaultCache:-->
 
-        -->
-    <defaultCache
-        maxElementsInMemory="10000"
-        eternal="false"
-        timeToIdleSeconds="120"
-        timeToLiveSeconds="120"
-        overflowToDisk="true"
-        />
+        <!--maxInMemory       - Sets the maximum number of objects that will be created in memory-->
+        <!--eternal           - Sets whether elements are eternal. If eternal,  timeouts are ignored and the element-->
+                            <!--is never expired.-->
+        <!--timeToIdleSeconds - Sets the time to idle for an element before it expires. Is only used-->
+                            <!--if the element is not eternal. Idle time is now - last accessed time-->
+        <!--timeToLiveSeconds - Sets the time to live for an element before it expires. Is only used-->
+                            <!--if the element is not eternal. TTL is now - creation time-->
+        <!--overflowToDisk    - Sets whether elements can overflow to disk when the in-memory cache-->
+                            <!--has reached the maxInMemory limit.-->
 
-    <!--Predefined caches.  Add your cache configuration settings here.
-        If you do not have a configuration for your cache a WARNING will be issued when the
-        CacheManager starts
+        <!--&ndash;&gt;-->
+    <!--<defaultCache-->
+        <!--maxElementsInMemory="10000"-->
+        <!--eternal="false"-->
+        <!--timeToIdleSeconds="120"-->
+        <!--timeToLiveSeconds="120"-->
+        <!--overflowToDisk="true"-->
+        <!--/>-->
 
-        The following attributes are required for defaultCache:
+    <!--&lt;!&ndash;Predefined caches.  Add your cache configuration settings here.-->
+        <!--If you do not have a configuration for your cache a WARNING will be issued when the-->
+        <!--CacheManager starts-->
 
-        name              - Sets the name of the cache. This is used to identify the cache. It must be unique.
-        maxInMemory       - Sets the maximum number of objects that will be created in memory
-        eternal           - Sets whether elements are eternal. If eternal,  timeouts are ignored and the element
-                            is never expired.
-        timeToIdleSeconds - Sets the time to idle for an element before it expires. Is only used
-                            if the element is not eternal. Idle time is now - last accessed time
-        timeToLiveSeconds - Sets the time to live for an element before it expires. Is only used
-                            if the element is not eternal. TTL is now - creation time
-        overflowToDisk    - Sets whether elements can overflow to disk when the in-memory cache
-                            has reached the maxInMemory limit.
+        <!--The following attributes are required for defaultCache:-->
 
-        -->
+        <!--name              - Sets the name of the cache. This is used to identify the cache. It must be unique.-->
+        <!--maxInMemory       - Sets the maximum number of objects that will be created in memory-->
+        <!--eternal           - Sets whether elements are eternal. If eternal,  timeouts are ignored and the element-->
+                            <!--is never expired.-->
+        <!--timeToIdleSeconds - Sets the time to idle for an element before it expires. Is only used-->
+                            <!--if the element is not eternal. Idle time is now - last accessed time-->
+        <!--timeToLiveSeconds - Sets the time to live for an element before it expires. Is only used-->
+                            <!--if the element is not eternal. TTL is now - creation time-->
+        <!--overflowToDisk    - Sets whether elements can overflow to disk when the in-memory cache-->
+                            <!--has reached the maxInMemory limit.-->
 
-    <!-- Sample cache named sampleCache1
-        This cache contains a maximum in memory of 10000 elements, and will expire
-        an element if it is idle for more than 5 minutes and lives for more than
-        10 minutes.
+        <!--&ndash;&gt;-->
 
-        If there are more than 10000 elements it will overflow to the
-        disk cache, which in this configuration will go to wherever java.io.tmp is
-        defined on your system. On a standard Linux system this will be /tmp"
-        -->
-    <cache name="sampleCache1"
-        maxElementsInMemory="10000"
-        eternal="false"
-        timeToIdleSeconds="300"
-        timeToLiveSeconds="600"
-        overflowToDisk="true"
-        />
+    <!--&lt;!&ndash; Sample cache named sampleCache1-->
+        <!--This cache contains a maximum in memory of 10000 elements, and will expire-->
+        <!--an element if it is idle for more than 5 minutes and lives for more than-->
+        <!--10 minutes.-->
 
-    <!-- Sample cache named sampleCache2
-        This cache contains 1000 elements. Elements will always be held in memory.
-        They are not expired. -->
-    <cache name="sampleCache2"
-        maxElementsInMemory="1000"
-        eternal="true"
-        timeToIdleSeconds="0"
-        timeToLiveSeconds="0"
-        overflowToDisk="false"
-        /> -->
+        <!--If there are more than 10000 elements it will overflow to the-->
+        <!--disk cache, which in this configuration will go to wherever java.io.tmp is-->
+        <!--defined on your system. On a standard Linux system this will be /tmp"-->
+        <!--&ndash;&gt;-->
+    <!--<cache name="sampleCache1"-->
+        <!--maxElementsInMemory="10000"-->
+        <!--eternal="false"-->
+        <!--timeToIdleSeconds="300"-->
+        <!--timeToLiveSeconds="600"-->
+        <!--overflowToDisk="true"-->
+        <!--/>-->
 
-    <!-- Place configuration for your caches following -->
+    <!--&lt;!&ndash; Sample cache named sampleCache2-->
+        <!--This cache contains 1000 elements. Elements will always be held in memory.-->
+        <!--They are not expired. &ndash;&gt;-->
+    <!--<cache name="sampleCache2"-->
+        <!--maxElementsInMemory="1000"-->
+        <!--eternal="true"-->
+        <!--timeToIdleSeconds="0"-->
+        <!--timeToLiveSeconds="0"-->
+        <!--overflowToDisk="false"-->
+        <!--/> &ndash;&gt;-->
 
-</ehcache>
+    <!--&lt;!&ndash; Place configuration for your caches following &ndash;&gt;-->
+
+<!--</ehcache>-->
