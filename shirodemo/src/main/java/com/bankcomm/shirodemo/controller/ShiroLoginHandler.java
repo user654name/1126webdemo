@@ -31,8 +31,45 @@ public class ShiroLoginHandler {
 
     private final Logger log = LoggerFactory.getLogger(ShiroLoginHandler.class);
 
+
+
+
     /**
-     * 登录入口
+     * 执行注册
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    @RequestMapping("/register")
+    public ModelAndView register(@RequestParam("username") String username,
+                                 @RequestParam("password") String password) {
+
+        System.out.println("username = " + username);
+
+
+        //1 校验参数
+        if ("".equals(username)){
+            return new ModelAndView("/guest/error");
+        }
+        //2 用户名对比
+        userService.findUserByUsername(username);
+
+        //3 失败则返回
+
+        //4 若成功则进行盐值生成
+
+        //5 密码散列(注意密码散列要和【登录密码对比】时的策略相同)
+
+        //6 将【用户名 非明文密码 盐值 注册时间】等等参数插入数据库
+
+
+
+        return new ModelAndView("/guest/register-success");
+    }
+
+    /**
+     * 执行登录
      *
      * @param username
      * @param password
@@ -90,31 +127,6 @@ public class ShiroLoginHandler {
         return "/guest/logout";
     }
 
-    /**
-     * 执行注册
-     *
-     * @param username
-     * @param password
-     * @return
-     */
-    @RequestMapping("/register")
-    public ModelAndView register(@RequestParam("username") String username,
-                           @RequestParam("password") String password) {
 
-        System.out.println("username = " + username);
-
-        //1 校验参数
-         if ("".equals(username)){
-           return new ModelAndView("/guest/error");
-         }
-        //2 用户名对比
-
-
-        //3.1 若成功则插入
-
-        //3.2 失败则返回
-
-        return new ModelAndView("/guest/register-success");
-    }
 }
 
