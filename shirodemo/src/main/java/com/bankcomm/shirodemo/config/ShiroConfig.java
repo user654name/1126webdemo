@@ -3,8 +3,10 @@ package com.bankcomm.shirodemo.config;
 
 
 import com.bankcomm.shirodemo.shiro.CustomRealm;
+import com.bankcomm.shirodemo.shiro.SecondRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
@@ -12,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -25,8 +29,6 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
-
-
 
     private  final transient Logger log = LoggerFactory.getLogger(ShiroConfig.class);
 
@@ -80,6 +82,19 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
+
+    //将自己的验证方式加入容器
+    @Bean
+    public Collection<Realm> myShiroRealms() {
+        CustomRealm customRealm = new CustomRealm();
+        SecondRealm secondRealm = new SecondRealm();
+        Collection<Realm> myShiroRealms = new HashSet<>();
+        myShiroRealms.add(customRealm);
+        myShiroRealms.add(secondRealm);
+        return myShiroRealms;
+    }
+
+
     /**
      * 注入 securityManager
      *
@@ -90,7 +105,9 @@ public class ShiroConfig {
     public SecurityManager securityManager(CustomRealm customRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         // 设置自定义的realm实现
-        securityManager.setRealm(customRealm);
+        // securityManager.setRealm(customRealm);
+        // 尝试配置多Realm
+        securityManager.setRealms(myShiroRealms());
         return securityManager;
     }
 
@@ -110,8 +127,6 @@ public class ShiroConfig {
         credentialsMatcher.setStoredCredentialsHexEncoded(true);
         return credentialsMatcher;
     }
-
-
 
 
 }
