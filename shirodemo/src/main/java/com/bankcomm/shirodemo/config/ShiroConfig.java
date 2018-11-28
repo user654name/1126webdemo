@@ -121,10 +121,12 @@ public class ShiroConfig {
         //管理员，需要角色权限 “admin”
 //        filterChainDefinitionMap.put("/admin/**", "roles[admin]");
         //开放登陆接口
+        filterChainDefinitionMap.put("/guest/home", "authc");
         filterChainDefinitionMap.put("/guest/*", "anon");
-        filterChainDefinitionMap.put("/shiro/**", "anon");
+        filterChainDefinitionMap.put("/guest/register", "anon");
         filterChainDefinitionMap.put("/shiro/logout", "logout");
         filterChainDefinitionMap.put("/shiro/home", "authc");
+        filterChainDefinitionMap.put("/shiro/**", "anon");
 
         //home放行
 //        filterChainDefinitionMap.put("/home", "anon");

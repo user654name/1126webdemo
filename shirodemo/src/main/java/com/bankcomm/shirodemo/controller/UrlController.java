@@ -1,7 +1,9 @@
 package com.bankcomm.shirodemo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author Tianqi.Zhang
@@ -12,30 +14,56 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class UrlController {
 
-    @RequestMapping("/guest/home")
-    public String toHome() {
-        return "/guest/home";
-    }
-
-    @RequestMapping("/guest/login")
-    public String toPage1() {
-        return "/guest/login";
-    }
-
-    @RequestMapping("/guest/notLogin")
-    public String toPage2() {
-        return "/guest/notLogin";
-    }
-
-
-/*    *//**
-     * 仅仅为了方便开发，配置直接访问资源
+    /**
+     * 用于跳转到guest目录下指定页面
      *
-     * @param path
+     * @param pagename
      * @return
-     *//*
-    @RequestMapping("{path}")
-    public String toAnyWhere(@PathVariable String path) {
-        return path;
-    }*/
+     */
+    @RequestMapping("/guest/{pagename}")
+    public ModelAndView toView(@PathVariable String pagename) {
+        System.out.println("即将跳转到pagename = /guest/" + pagename);
+        ModelAndView view = null;
+
+        if (!"".equals(pagename)) {
+            switch (pagename) {
+                case "home":
+                case "login":
+                case "notLogin":
+                case "register":
+                    view = new ModelAndView("/guest/" + pagename);
+                    break;
+                default:
+                    view = new ModelAndView("/guest/error");
+                    break;
+            }
+        }
+        System.out.println("view = " + view);
+        return view;
+    }
+
+//
+//    @RequestMapping("/guest/home")
+//    public ModelAndView toHome() {
+//        return new ModelAndView("/guest/home");
+//    }
+//
+//    @RequestMapping("/guest/login")
+//    public ModelAndView toPage1() {
+//        return new ModelAndView("/guest/login");
+//    }
+//
+//    @RequestMapping("/guest/notLogin")
+//    public ModelAndView toPage2() {
+//        return new ModelAndView("/guest/notLogin");
+//    }
+//
+//    @RequestMapping("/guest/register")
+//    public ModelAndView toPage3() {
+//        return new ModelAndView("/guest/register");
+//    }
+
+
+
+
 }

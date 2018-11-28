@@ -1,6 +1,6 @@
 package com.bankcomm.shirodemo.controller;
 
-import com.bankcomm.shirodemo.config.ShiroConfig;
+import com.bankcomm.shirodemo.bean.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author Tianqi.Zhang
@@ -33,7 +34,8 @@ public class ShiroLoginHandler {
      * @return
      */
     @RequestMapping("/login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public String login(@RequestParam("username") String username,
+                        @RequestParam("password") String password) {
 
         System.out.println("username = " + username);
 
@@ -81,6 +83,30 @@ public class ShiroLoginHandler {
     @RequestMapping("/logout")
     public String logout(){
         return "/guest/logout";
+    }
+
+    /**
+     * 执行注册
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    @RequestMapping("/register")
+    public ModelAndView register(@RequestParam("username") String username,
+                           @RequestParam("password") String password) {
+
+        //1 校验参数
+         if ("".equals(username)){
+           return new ModelAndView("/guest/error");
+         }
+        //2 用户名对比
+
+        //3.1 若成功则插入
+
+        //3.2 失败则返回
+
+        return new ModelAndView("/guest/register-success");
     }
 }
 
