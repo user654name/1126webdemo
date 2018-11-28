@@ -13,21 +13,44 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class UrlController {
+    @RequestMapping("/authc/home")
+    public ModelAndView toHome() {
+        return new ModelAndView("/authc/home");
+    }
 
-    /**
+    @RequestMapping("/guest/login")
+    public ModelAndView toPage1() {
+        return new ModelAndView("/guest/login");
+    }
+
+    @RequestMapping("/guest/register")
+    public ModelAndView toPage3() {
+        return new ModelAndView("/guest/register");
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /*  *//**
      * 用于跳转到guest目录下指定页面
      *
      * @param pagename
      * @return
-     */
+     *//*
     @RequestMapping("/guest/{pagename}")
-    public ModelAndView toView(@PathVariable String pagename) {
+    public ModelAndView toGuestView(@PathVariable String pagename) {
         System.out.println("即将跳转到pagename = /guest/" + pagename);
         ModelAndView view = null;
 
         if (!"".equals(pagename)) {
             switch (pagename) {
-                case "home":
                 case "login":
                 case "notLogin":
                 case "register":
@@ -40,30 +63,7 @@ public class UrlController {
         }
         System.out.println("view = " + view);
         return view;
-    }
-
-//
-//    @RequestMapping("/guest/home")
-//    public ModelAndView toHome() {
-//        return new ModelAndView("/guest/home");
-//    }
-//
-//    @RequestMapping("/guest/login")
-//    public ModelAndView toPage1() {
-//        return new ModelAndView("/guest/login");
-//    }
-//
-//    @RequestMapping("/guest/notLogin")
-//    public ModelAndView toPage2() {
-//        return new ModelAndView("/guest/notLogin");
-//    }
-//
-//    @RequestMapping("/guest/register")
-//    public ModelAndView toPage3() {
-//        return new ModelAndView("/guest/register");
-//    }
-
-
+    }*/
 
 
 }

@@ -1,11 +1,13 @@
 package com.bankcomm.shirodemo.controller;
 
-import com.bankcomm.shirodemo.bean.User;
+import com.bankcomm.shirodemo.service.UserService;
+import com.bankcomm.shirodemo.service.UserServiceImpl;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/shiro")
 public class ShiroLoginHandler {
+
+    @Autowired
+    private UserService userService;
 
     private final Logger log = LoggerFactory.getLogger(ShiroLoginHandler.class);
 
@@ -96,11 +101,14 @@ public class ShiroLoginHandler {
     public ModelAndView register(@RequestParam("username") String username,
                            @RequestParam("password") String password) {
 
+        System.out.println("username = " + username);
+
         //1 校验参数
          if ("".equals(username)){
            return new ModelAndView("/guest/error");
          }
         //2 用户名对比
+
 
         //3.1 若成功则插入
 

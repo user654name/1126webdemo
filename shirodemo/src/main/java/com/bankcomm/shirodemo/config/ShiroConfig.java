@@ -121,17 +121,15 @@ public class ShiroConfig {
         //管理员，需要角色权限 “admin”
 //        filterChainDefinitionMap.put("/admin/**", "roles[admin]");
         //开放登陆接口
-        filterChainDefinitionMap.put("/guest/home", "authc");
-        filterChainDefinitionMap.put("/guest/*", "anon");
-        filterChainDefinitionMap.put("/guest/register", "anon");
-        filterChainDefinitionMap.put("/shiro/logout", "logout");
-        filterChainDefinitionMap.put("/shiro/home", "authc");
-        filterChainDefinitionMap.put("/shiro/**", "anon");
 
-        //home放行
-//        filterChainDefinitionMap.put("/home", "anon");
-//        filterChainDefinitionMap.put("/shiro/login", "anon");
-        //其余接口一律拦截
+//        filterChainDefinitionMap.put("/guest/home", "authc");
+        filterChainDefinitionMap.put("/guest/*", "anon");
+//        filterChainDefinitionMap.put("/guest/register", "anon");
+        filterChainDefinitionMap.put("/shiro/register", "anon");
+        filterChainDefinitionMap.put("/shiro/logout", "logout");
+        filterChainDefinitionMap.put("/shiro/*", "authc");
+
+
         //主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
         filterChainDefinitionMap.put("/**", "authc");
 

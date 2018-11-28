@@ -5,29 +5,29 @@
     <title>Title</title>
 </head>
 <body>
-<h1 align="center">Login Page</h1>
-
-<form action="/shiro/login" method="post">
+<h1 align="center">登录页面</h1>
+<div>
+    <form action="/shiro/login" method="post">
     <table align="center">
         <tr>
-            <td>username</td>
+            <td>用户名</td>
             <td><input type="text" name="username"></td>
         </tr>
         <tr>
-            <td>password</td>
+            <td>密码</td>
             <td><input type="password" name="password"></td>
         </tr>
         <tr>
-            <td>remember me</td>
+            <td>记住我</td>
             <td><input type="checkbox" name="rememberme" value="true"></td>
         </tr>
         <tr>
-            <td colspan="2" align="center"><input type="submit" value="Login"></td>
+            <td colspan="2" align="center"><input type="submit" value="登录"></td>
         </tr>
     </table>
-</form>
-
-<h2 align="center"><a href="/guest/home" >首页</a></h2>
-<h2 align="center"><a href="/guest/register" >注册</a></h2>
+    </form>
+    <h2 align="center"><a href="/authc/home">首页</a></h2>
+    <h2 align="center"><a href="/guest/register" >注册</a></h2>
+</div>
 </body>
 </html>
