@@ -146,10 +146,11 @@ public class ShiroConfig {
     @Bean
     public Collection<Realm> myShiroRealms() {
         CustomRealm customRealm = new CustomRealm();
-        SecondRealm secondRealm = new SecondRealm();
+//        SecondRealm secondRealm = new SecondRealm();
         Collection<Realm> myShiroRealms = new HashSet<>();
         myShiroRealms.add(customRealm);
-        myShiroRealms.add(secondRealm);
+//        myShiroRealms.add(secondRealm);
+        log.info("当前Realms情况为myShiroRealms = " + myShiroRealms);
         return myShiroRealms;
     }
 

@@ -18,6 +18,9 @@ import java.util.Set;
 /**
  * 这个Realm复制自 CustomRealm
  *
+ *
+ *
+ *
  * @author Tianqi.Zhang
  * @date 2018/11/28
  * @package com.bankcomm.shirodemo.config
@@ -27,8 +30,11 @@ import java.util.Set;
  * Realm必须被实现(AuthorizingRealm是抽象类)
  * 必须配置组件注解(@Component作为组件提供给Spring-IoC管理)
  * 注入SecurityManager时，依赖这个Realm实现类
+ *
+ * 若改动 要通知修改ShiroConfig.myShiroRealms
+ * @see ShiroConfig.myShiroRealms()
  */
-@Component
+//@Component
 public class SecondRealm extends AuthorizingRealm {
 
     /**

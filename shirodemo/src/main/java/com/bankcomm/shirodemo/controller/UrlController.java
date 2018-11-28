@@ -28,14 +28,14 @@ public class UrlController {
     }
 
 
-//    /**
-//     * 仅仅为了方便开发，配置直接访问资源
-//     *
-//     * @param path
-//     * @return
-//     */
-//    @RequestMapping("{path}")
-//    public String toAnyWhere(@PathVariable String path) {
-//        return path;
-//    }
+/*    *//**
+     * 仅仅为了方便开发，配置直接访问资源
+     *
+     * @param path
+     * @return
+     *//*
+    @RequestMapping("{path}")
+    public String toAnyWhere(@PathVariable String path) {
+        return path;
+    }*/
 }
