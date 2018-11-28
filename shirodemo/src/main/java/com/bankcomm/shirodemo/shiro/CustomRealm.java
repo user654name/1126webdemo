@@ -119,6 +119,8 @@ public class CustomRealm extends AuthorizingRealm {
      * 3 创建SimpleAuthorizationInfo设置其Roles属性
      * 4 返回SimpleAuthorizationInfo对象
      *
+     * 【注意】权限的注解不能加在开启事务注解的Service中
+     *      (导致成为代理对象的代理，加载异常)
      * @param principalCollection
      * @return
      */

@@ -4,6 +4,7 @@
     <list default="true" id="0d1a96ea-3ef1-4ffb-a665-754dd2b3b189" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java" />
+      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/resources/templates/authc/notRole.html" afterPath="$PROJECT_DIR$/shirodemo/src/main/resources/templates/authc/notRole.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/shirodemo/target/" />
@@ -18,11 +19,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="CustomRealm.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CustomRealm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2608">
-              <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="227">
+              <caret line="122" column="12" lean-forward="false" selection-start-line="122" selection-start-column="12" selection-end-line="122" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login-fail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/login-fail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="notRole.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/authc/notRole.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -93,7 +114,6 @@
         <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/notlogin.html" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/UrlController.java" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/authc/home.html" />
-        <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/authc/notRole.html" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/error.html" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/register.html" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/login.html" />
@@ -112,6 +132,7 @@
         <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/ShiroLoginHandler.java" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/authc/login-success.html" />
         <option value="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java" />
+        <option value="$PROJECT_DIR$/shirodemo/src/main/resources/templates/authc/notRole.html" />
       </list>
     </option>
   </component>
@@ -509,7 +530,7 @@
       <updated>1543306884620</updated>
       <workItem from="1543306885865" duration="17435000" />
       <workItem from="1543367339395" duration="24840000" />
-      <workItem from="1543411368074" duration="9319000" />
+      <workItem from="1543411368074" duration="9785000" />
     </task>
     <task id="LOCAL-00001" summary="2018年11月27日 16:25:05 处理了无法登录的bug 因为表单的action没有权限 被过滤器过滤无法到达Controller中">
       <created>1543307162381</created>
@@ -728,7 +749,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543445218545</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="2018年11月29日 07:04:50 填加授权内容">
+      <created>1543446307144</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1543446307144</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -764,7 +792,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51594000" />
+    <option name="totallyTimeSpent" value="52060000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="120" y="-9" width="1809" height="1098" extended-state="6" />
@@ -857,7 +885,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2018年11月28日 08:09:18 &#10;1 ShiroConfig中配置多Realm&#10;2 添加 第二个Realm SecondRealm.java" />
     <MESSAGE value="2018年11月28日 08:13:45&#10;SecondRealm中配置了临时账户密码实现登录" />
     <MESSAGE value="2018年11月28日 08:23:46 在过滤器中配置登出功能" />
     <MESSAGE value="2018年11月28日 08:23:46 在过滤器中配置登出功能 （未完成）" />
@@ -882,7 +909,8 @@
     <MESSAGE value="2018年11月28日 22:38:52 写了UserService和实现的findUserByUsername方法" />
     <MESSAGE value="2018年11月28日 22:48:53 写了Mapper 的方法 和 测试类 项目中已经可以进行junit测试" />
     <MESSAGE value="2018年11月29日 06:46:28 增加admin页面 更改了过滤器无法访问login页面的BUG" />
-    <option name="LAST_COMMIT_MESSAGE" value="2018年11月29日 06:46:28 增加admin页面 更改了过滤器无法访问login页面的BUG" />
+    <MESSAGE value="2018年11月29日 07:04:50 填加授权内容" />
+    <option name="LAST_COMMIT_MESSAGE" value="2018年11月29日 07:04:50 填加授权内容" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -991,13 +1019,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/login-fail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/logout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1037,13 +1058,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/authc/notRole.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1413,8 +1427,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/CustomRealm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2608">
-          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state relative-caret-position="227">
+          <caret line="122" column="12" lean-forward="false" selection-start-line="122" selection-start-column="12" selection-end-line="122" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/login-fail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shirodemo/src/main/resources/templates/authc/notRole.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
           <folding />
         </state>
       </provider>
