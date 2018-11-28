@@ -1,7 +1,7 @@
 package com.bankcomm.shirodemo.service;
 
 import com.bankcomm.shirodemo.bean.User;
-import com.bankcomm.shirodemo.mapper.UserMapper;
+import com.bankcomm.shirodemo.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
