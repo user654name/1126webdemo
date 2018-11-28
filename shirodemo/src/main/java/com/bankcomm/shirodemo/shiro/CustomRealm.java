@@ -37,11 +37,6 @@ public class CustomRealm extends AuthorizingRealm {
     UserService userService;
 
     private final Logger log = LoggerFactory.getLogger(CustomRealm.class);
-//
-////    @Autowired
-////    public CustomRealm(UserMapper userMapper) {
-////        this.userMapper = userMapper;
-////    }
 
     /**
      * 获取身份验证信息
@@ -119,16 +114,29 @@ public class CustomRealm extends AuthorizingRealm {
     /**
      * 获取授权信息(获取用户对应的权限)
      *
+     * 1 PrincipalCollection获取登录用户信息
+     * 2 用户信息中获取当前用户角色或权限
+     * 3 创建SimpleAuthorizationInfo设置其Roles属性
+     * 4 返回SimpleAuthorizationInfo对象
+     *
      * @param principalCollection
      * @return
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         log.info("———— 进入 权限认证 ————");
+
+        Object primaryPrincipal = principalCollection.getPrimaryPrincipal();
+        System.out.println("primaryPrincipal = " + primaryPrincipal);
+
+        // 准备： 读取用户名
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         System.out.println("————权限认证————"+username);
+
+        // 1 PrincipalCollection获取登录用户信息
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        //获得该用户角色
+
+        // 2 获得该用户角色(fromDB)
 //        String role = userMapper.getRole(username);
         Set<String> set = new HashSet<>();
         //需要将 role 封装到 Set 作为 info.setRoles() 的参数
