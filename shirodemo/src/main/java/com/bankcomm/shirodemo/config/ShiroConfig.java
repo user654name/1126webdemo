@@ -7,12 +7,15 @@ import com.bankcomm.shirodemo.shiro.SecondRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -30,18 +33,70 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    private  final transient Logger log = LoggerFactory.getLogger(ShiroConfig.class);
+    private final Logger log = LoggerFactory.getLogger(ShiroConfig.class);
+
 
     /**
-     * 过滤器默认权限表 {anon=anon 匿名访问, authc=authc, authcBasic=authcBasic, 登出logout=logout,
-     * noSessionCreation=noSessionCreation, perms=perms, port=port,
-     * rest=rest, roles=roles, ssl=ssl, user=user}
-     * <p>
+     * 2018年11月28日 09:58:16
+     * 配置生命周期管理器
+     *
+     * @return
+     */
+    @Bean(name = "lifecycleBeanPostProcessor")
+    public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
+        log.info("生命周期管理配置OK-ShiroConfig.getLifecycleBeanPostProcessor");
+        return new LifecycleBeanPostProcessor();
+    }
+
+    /**
+     * 2018年11月28日 09:58:16
+     * 配置生命周期管理器 代理
+     *
+     */
+    @Bean
+    @DependsOn("lifecycleBeanPostProcessor")
+    public DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxy = new DefaultAdvisorAutoProxyCreator();
+        defaultAdvisorAutoProxy.setProxyTargetClass(true);
+        log.info("开启AOP自动代理，扫描切入点 ShiroConfig.getDefaultAdvisorAutoProxyCreator");
+        return defaultAdvisorAutoProxy;
+    }
+
+    /**
+     * 缓存配置
+     * @return
+     */
+//    @Bean
+//    public EhCacheManager getCacheManager() {
+//        EhCacheManager cacheManager = new EhCacheManager();
+//        cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
+//        return cacheManager;
+//    }
+
+
+
+    /**
+     * 过滤器默认权限表
+     * {
+     *    anon=anon 匿名访问,
+     *    authc=authc,
+     *    authcBasic=authcBasic,
+     *    logout=logout 登出,
+     *    noSessionCreation=noSessionCreation,
+     *    perms=perms,
+     *    port=port,
+     *    rest=rest,
+     *    roles=roles,
+     *    ssl=ssl,
+     *    user=user }
+     *
      * anon, authc, authcBasic, user 是第一组认证过滤器
      * perms, port, rest, roles, ssl 是第二组授权过滤器
-     * <p>
-     * user 和 authc 的不同：当应用开启了rememberMe时, 用户下次访问时可以是一个user, 但绝不会是authc,
-     * 因为authc是需要重新认证的, user表示用户不一定已通过认证, 只要曾被Shiro记住过登录状态的用户就可以正常发起请求,比如rememberMe
+     *
+     * user 和 authc 的不同：
+     * 当应用开启了rememberMe时, 用户下次访问时可以是一个user, 但绝不会是authc,
+     * 因为authc是需要重新认证的, user表示用户不一定已通过认证,
+     * 只要曾被Shiro记住过登录状态的用户就可以正常发起请求,比如rememberMe
      * 以前的一个用户登录时开启了rememberMe, 然后他关闭浏览器, 下次再访问时他就是一个user, 而不会authc
      *
      * @param securityManager 初始化 ShiroFilterFactoryBean 的时候需要注入 SecurityManager
@@ -84,7 +139,9 @@ public class ShiroConfig {
     }
 
 
-    //将自己的验证方式加入容器
+    /**
+     * 将自己的验证方式加入容器
+     */
     @Bean
     public Collection<Realm> myShiroRealms() {
         CustomRealm customRealm = new CustomRealm();
@@ -118,6 +175,7 @@ public class ShiroConfig {
      *
      * @return
      */
+
     @Bean("hashedCredentialsMatcher")
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
