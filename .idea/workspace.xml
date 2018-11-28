@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d1a96ea-3ef1-4ffb-a665-754dd2b3b189" name="Default" comment="2018年11月28日 10:52:13 通过小乌龟修改本地ignore文件 忽略idea lib内容">
+    <list default="true" id="0d1a96ea-3ef1-4ffb-a665-754dd2b3b189" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/.gitignore" afterPath="$PROJECT_DIR$/shirodemo/.gitignore" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/shirodemo/target/" />
@@ -372,7 +371,7 @@
       <option name="presentableId" value="Default" />
       <updated>1543306884620</updated>
       <workItem from="1543306885865" duration="17435000" />
-      <workItem from="1543367339395" duration="6331000" />
+      <workItem from="1543367339395" duration="6347000" />
     </task>
     <task id="LOCAL-00001" summary="2018年11月27日 16:25:05 处理了无法登录的bug 因为表单的action没有权限 被过滤器过滤无法到达Controller中">
       <created>1543307162381</created>
@@ -479,11 +478,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543373577749</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="2018年11月28日 10:52:13 通过小乌龟修改本地ignore文件 忽略idea lib内容">
+      <created>1543373693269</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1543373693269</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23766000" />
+    <option name="totallyTimeSpent" value="23782000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="211" y="-9" width="1718" height="1098" extended-state="6" />
