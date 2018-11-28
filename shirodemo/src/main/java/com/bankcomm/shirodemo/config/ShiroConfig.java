@@ -125,6 +125,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/guest/*", "anon");
         filterChainDefinitionMap.put("/shiro/**", "anon");
         filterChainDefinitionMap.put("/shiro/logout", "logout");
+        filterChainDefinitionMap.put("/shiro/home", "authc");
 
         //home放行
 //        filterChainDefinitionMap.put("/home", "anon");

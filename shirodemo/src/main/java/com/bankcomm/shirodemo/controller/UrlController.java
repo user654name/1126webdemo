@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @project 1126webdemo
  */
 @Controller
-public class HomeController {
+public class UrlController {
 
     @RequestMapping("/guest/home")
     public String toHome() {

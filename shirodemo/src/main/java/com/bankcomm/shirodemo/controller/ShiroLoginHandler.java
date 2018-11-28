@@ -76,5 +76,10 @@ public class ShiroLoginHandler {
         }
         return "login-success";
     }
+
+    @RequestMapping("/logout")
+    public String logout(){
+        return "/guest/logout";
+    }
 }
 
