@@ -2,8 +2,6 @@ package com.bankcomm.shirodemo.shiro;
 
 
 import com.bankcomm.shirodemo.config.ShiroConfig;
-import com.bankcomm.shirodemo.controller.ShiroLoginHandler;
-import com.bankcomm.shirodemo.mapper.UserMapper;
 import com.bankcomm.shirodemo.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -17,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Set;
 /**
@@ -36,10 +33,8 @@ import java.util.Set;
 @Component
 public class CustomRealm extends AuthorizingRealm {
 
-
-
-//    @Autowired
-    private final UserMapper userMapper = null;
+    @Autowired
+    UserService userService;
 
     private final Logger log = LoggerFactory.getLogger(CustomRealm.class);
 //
