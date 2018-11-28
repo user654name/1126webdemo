@@ -1,5 +1,8 @@
 <ehcache>
-
+    <!--
+    输入无意义汉字 测试SpringBoot是否扫描到文件
+    结论是会自动扫描2018年11月28日 11:16:41
+    -->
     <!-- Sets the path to the directory where cache .data files are created.
 
          If the path is a Java System Property it is replaced by
