@@ -69,10 +69,11 @@ public class ShiroConfig {
         //开放登陆接口
         filterChainDefinitionMap.put("/guest/*", "anon");
         filterChainDefinitionMap.put("/shiro/**", "anon");
+        filterChainDefinitionMap.put("/shiro/logout", "logout");
+
         //home放行
 //        filterChainDefinitionMap.put("/home", "anon");
 //        filterChainDefinitionMap.put("/shiro/login", "anon");
-//        filterChainDefinitionMap.put("/shiro/logout", "anon");
         //其余接口一律拦截
         //主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
         filterChainDefinitionMap.put("/**", "authc");
