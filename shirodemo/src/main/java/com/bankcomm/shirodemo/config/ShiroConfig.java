@@ -47,7 +47,7 @@ public class ShiroConfig {
      * @param securityManager 初始化 ShiroFilterFactoryBean 的时候需要注入 SecurityManager
      */
     @Bean
-    public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
+    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
 
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         // 必须设置 SecurityManager
