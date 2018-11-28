@@ -113,8 +113,24 @@ public class ShiroConfig {
         // 登录成功
         shiroFilterFactoryBean.setSuccessUrl("/login-success");
 
-        // 设置拦截器
+        // 设置拦截器 LinkedHashMap 注意顺序
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+
+
+        // 设置过滤器内容
+        buildFilterChainDefinitionMap(filterChainDefinitionMap);
+
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        log.info("Shiro拦截器工厂类注入成功");
+        return shiroFilterFactoryBean;
+    }
+
+    /**
+     * 设置过滤器 内容
+     *
+     * @param filterChainDefinitionMap
+     */
+    private void buildFilterChainDefinitionMap(Map<String, String> filterChainDefinitionMap) {
         //游客，开发权限
 //        filterChainDefinitionMap.put("/guest/**", "anon");
         //用户，需要角色权限 “user”
@@ -122,8 +138,6 @@ public class ShiroConfig {
         //管理员，需要角色权限 “admin”
 //        filterChainDefinitionMap.put("/admin/**", "roles[admin]");
         //开放登陆接口
-
-        // filterChainDefinitionMap.put("/guest/home", "authc");
         filterChainDefinitionMap.put("/guest/*", "anon");
         // filterChainDefinitionMap.put("/guest/register", "anon");
         filterChainDefinitionMap.put("/shiro/register", "anon");
@@ -135,10 +149,6 @@ public class ShiroConfig {
 
         //主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
         filterChainDefinitionMap.put("/**", "authc");
-
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-        log.info("Shiro拦截器工厂类注入成功");
-        return shiroFilterFactoryBean;
     }
 
 
