@@ -19,4 +19,6 @@ public interface UserService {
      * @return true 代表用户名已经存在
      */
     User findUserByUsername(String username);
+
+    boolean insert(User userInsert);
 }

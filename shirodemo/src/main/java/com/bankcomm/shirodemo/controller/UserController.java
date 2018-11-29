@@ -1,5 +1,6 @@
 package com.bankcomm.shirodemo.controller;
 
+import com.bankcomm.shirodemo.bean.User;
 import com.bankcomm.shirodemo.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
+ *
+ * 处理登录注册请求
+ *
  * @author Tianqi.Zhang
  * @date 2018/11/26
  * @time 22:00
@@ -23,12 +27,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/shiro")
-public class LoginController {
+public class UserController {
 
     @Autowired
     private UserService userService;
 
-    private final Logger log = LoggerFactory.getLogger(LoginController.class);
+    private final Logger log = LoggerFactory.getLogger(UserController.class);
 
 
 
@@ -43,28 +47,55 @@ public class LoginController {
     @RequestMapping("/register")
     public ModelAndView register(@RequestParam("username") String username,
                                  @RequestParam("password") String password) {
-
+        String toPage;
         System.out.println("username = " + username);
 
 
         //1 校验参数
         if ("".equals(username)){
-            return new ModelAndView("/guest/error");
+            toPage = "/guest/error";
+            System.out.println("数据校验出错（用户名为空）即将跳转toPage = " + toPage);
+            return new ModelAndView(toPage);
         }
         //2 用户名对比
-        userService.findUserByUsername(username);
+        User userFromDb = userService.findUserByUsername(username);
 
-        //3 失败则返回
+        if (userFromDb == null) {
+            //3 用户名不存在 - 可注册
+            //4 盐值生成
+            //5 密码散列(注意密码散列要和【登录密码对比】时的策略相同)
+            //6 将【用户名 非明文密码 盐值 注册时间】等等参数插入数据库
+            User userInsert = new User();
+            userInsert.setUsername(username);
+            userInsert.setPassword(password);
+            //默认角色为 undefined
+            userInsert.setRole("undefined");
 
-        //4 若成功则进行盐值生成
+            boolean insert = userService.insert(userInsert);
 
-        //5 密码散列(注意密码散列要和【登录密码对比】时的策略相同)
+            if (insert) {
+                // 注册成功
+                toPage = "/guest/login";
+                System.out.println("注册成功即将跳转toPage = " + toPage);
+                return new ModelAndView(toPage);
 
-        //6 将【用户名 非明文密码 盐值 注册时间】等等参数插入数据库
+            } else {
+                // 注册失败
+                toPage = "/guest/error";
+                System.out.println("注册成功即将跳转toPage = " + toPage);
+                return new ModelAndView(toPage);
 
+            }
 
+        } else {
+            // 用户名已存在 返回错误
+            String errMsg = "用户名已存在";
+            System.out.println("errMsg = " + errMsg);
+            toPage = "/guest/error";
+            System.out.println("注册成功即将跳转toPage = " + toPage);
+            return new ModelAndView(toPage);
+        }
 
-        return new ModelAndView("/guest/register-success");
     }
 
     /**

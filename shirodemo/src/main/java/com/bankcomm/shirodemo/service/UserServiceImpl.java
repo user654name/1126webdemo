@@ -21,7 +21,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserByUsername(String username) {
-        return userMapper.selectByUsername(username);
+        User user = userMapper.selectByUsername(username);
+        System.out.println("注册 查询到用户结果为user = " + user);
+        return user;
 
+    }
+
+    @Override
+    public boolean insert(User userInsert) {
+        Integer insert = userMapper.insert(userInsert);
+        // 插入结果为一条则为成功
+        boolean ok = insert == 1 ? true : false;
+        System.out.println("注册用户--->成功插入:insert = " + insert+"条数据(应为1条)");
+        return ok;
     }
 }

@@ -14,11 +14,42 @@ public class User {
     private String username;
     private String password;
     private String role;
-//    private String salt;
-//    private Date createTime;
-//    private Date lastLoginTime;
-//    private String status;
+    private String salt;
+    private Date createTime;
+    private Date lastLoginTime;
+    private String status;
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;
