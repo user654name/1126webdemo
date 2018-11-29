@@ -1,5 +1,7 @@
 package com.bankcomm.shirodemo.controller;
 
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.springframework.context.annotation.Role;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class UrlController {
-    @RequestMapping("/home")
+    @RequestMapping("/authc/home")
     public ModelAndView toHome() {
         return new ModelAndView("/authc/home");
     }
@@ -24,8 +26,20 @@ public class UrlController {
     }
 
     @RequestMapping("/guest/register")
-    public ModelAndView toPage3() {
+    public ModelAndView toPage2() {
         return new ModelAndView("/guest/register");
+    }
+
+
+    @RequiresRoles("admin")
+    @RequestMapping("/admin/adminpage")
+    public ModelAndView toPage3() {
+        return new ModelAndView("/admin/adminpage");
+    }
+
+    @RequestMapping("/authc/notrole")
+    public ModelAndView toPage4() {
+        return new ModelAndView("/authc/notrole");
     }
 
 

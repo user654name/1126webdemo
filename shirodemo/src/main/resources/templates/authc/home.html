@@ -6,12 +6,18 @@
     <title>HomePage</title>
 </head>
 <body>
-<div align="center">
+<div align="left">
     <h1>Home Page</h1>
-    <h3>页面登陆后可查看</h3>
-    <!--<shiro:guest>-->
-    <!--欢迎游客访问，<a href="${pageContext.request.contextPath}/login.jsp">登录</a>-->
-    <!--</shiro:guest>&nbsp;--></div>
+    <h3>您已经登录</h3>
+    <shiro:guest>
+        欢迎游客访问，<a href="/guest/login">登录</a>
+    </shiro:guest>&nbsp;
+    <br>
+    <shiro:hasRole name="admin">
+        <a href="/admin/adminpage">管理员页面</a>
+    </shiro:hasRole>
+    <br><a href="https://www.baidu.com/">没有权限的也能访问的页面</a>
+</div>
 
 </body>
 </html>

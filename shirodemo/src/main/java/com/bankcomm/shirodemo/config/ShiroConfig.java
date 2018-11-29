@@ -109,7 +109,7 @@ public class ShiroConfig {
         // setLoginUrl 如果不设置值，默认会自动寻找Web工程根目录下的"/login.jsp"页面 或 "/login" 映射
         shiroFilterFactoryBean.setLoginUrl("/guest/login");
         // 无权限时 跳转的
-        shiroFilterFactoryBean.setUnauthorizedUrl("/guest/notRole");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/authc/notrole");
         // 登录成功
         shiroFilterFactoryBean.setSuccessUrl("/login-success");
 
@@ -139,32 +139,33 @@ public class ShiroConfig {
 //        filterChainDefinitionMap.put("/admin/**", "roles[admin]");
         //开放登陆接口
         filterChainDefinitionMap.put("/guest/*", "anon");
-        // filterChainDefinitionMap.put("/guest/register", "anon");
         filterChainDefinitionMap.put("/shiro/register", "anon");
         filterChainDefinitionMap.put("/shiro/login", "anon");
         filterChainDefinitionMap.put("/shiro/logout", "logout");
         //加入权限页面2018年11月29日 06:12:49
-//        filterChainDefinitionMap.put("/admin/adminpage", "roles[admin]");
+        filterChainDefinitionMap.put("/admin/adminpage", "roles[admin]");
         filterChainDefinitionMap.put("/shiro/*", "authc");
 
         //主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
         filterChainDefinitionMap.put("/**", "authc");
     }
 
-
-    /**
-     * 将自己的验证方式加入容器
-     */
-    @Bean
-    public Collection<Realm> myShiroRealms() {
-        CustomRealm customRealm = new CustomRealm();
-//        SecondRealm secondRealm = new SecondRealm();
-        Collection<Realm> myShiroRealms = new HashSet<>();
-        myShiroRealms.add(customRealm);
-//        myShiroRealms.add(secondRealm);
-        log.info("当前Realms情况为myShiroRealms = " + myShiroRealms);
-        return myShiroRealms;
-    }
+//
+//    /**
+//     * 将自己的验证方式加入容器
+//     * 2018年11月29日 16:55:26
+//     */
+//    @Bean
+//    @Deprecated
+//    public Collection<Realm> myShiroRealms() {
+//        CustomRealm customRealm = new CustomRealm();
+////        SecondRealm secondRealm = new SecondRealm();
+//        Collection<Realm> myShiroRealms = new HashSet<>();
+//        myShiroRealms.add(customRealm);
+////        myShiroRealms.add(secondRealm);
+//        log.info("当前Realms情况为myShiroRealms = " + myShiroRealms);
+//        return myShiroRealms;
+//    }
 
 
     /**
@@ -200,10 +201,11 @@ public class ShiroConfig {
     /**
      *
      * 使用密码非明文存储
+     * 指定加密策略(不可逆加密策略——MD5 SHA1)
+     * 可作为属性注入给各个Realm(就在这个类配置)
      *
      * @return
      */
-
     @Bean("hashedCredentialsMatcher")
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();

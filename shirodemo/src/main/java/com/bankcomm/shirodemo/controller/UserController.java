@@ -161,8 +161,8 @@ public class UserController {
             }
         }
         //登录成功的视图
-        toPage = "authc/login-success";
-        System.out.println("即将跳转到 authc/login-success" );
+        toPage = "authc/home";
+        System.out.println("即将跳转到"+toPage);
         return new ModelAndView(toPage);
     }
 
