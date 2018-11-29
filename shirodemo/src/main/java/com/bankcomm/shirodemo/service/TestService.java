@@ -43,7 +43,7 @@ public class TestService {
         timeout = session.getTimeout();
         System.out.println("当前Session过期时间为timeout = " + timeout);
         session.touch();// 更新最后访问时间
-        session.stop();// 销毁会话
+//        session.stop();// 销毁会话(可实现注销)
 
     }
 }

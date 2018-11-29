@@ -10,5 +10,6 @@ spring:
     cache: true
     prefix: classpath:/templates/
     mode: HTML
-mybatis:
-  config-location:
+#    suffix: .html
+#mybatis:
+#  config-location:

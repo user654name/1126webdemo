@@ -3,6 +3,7 @@ package com.bankcomm.shirodemo.controller;
 import com.bankcomm.shirodemo.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,7 +24,7 @@ public class TestController {
     TestService testService;
 
     @RequestMapping("/test")
-    public ModelAndView doTest(HttpSession session) {
+    public ModelAndView doTest(HttpSession session,Model model) {
         System.out.println("TestController.doTest");
         session.setAttribute("key", "value——4000元");
 
@@ -48,6 +49,7 @@ public class TestController {
         System.out.println("销毁shiro-session后 查看 key = " + key);
 
 
+        model.addAttribute("key","GetKeyValue");
         System.out.println("测试结束 ");
         String toPage = "authc/home";
         return new ModelAndView(toPage);

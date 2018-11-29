@@ -8,19 +8,24 @@
 </head>
 <body>
 <div align="left">
-    <h1>Home Page</h1>
+    <h1>首页</h1>
     <h3>您已经登录</h3>
-    <shiro:principal/>
-    <shiro:principal property="username"/>
-    <br>
-    <shiro:guest>
-        欢迎游客访问，<a href="/guest/login">登录</a>
-    </shiro:guest>&nbsp;
+    <!--<shiro:a></shiro:a>-->
+    <!--<shiro:principal/>-->
+    <!--<shiro:principal property="username"/>-->
+    <!--<br>-->
+    <!--<shiro:guest>-->
+    <!--欢迎游客访问，<a href="/guest/login">登录</a>-->
+    <!--</shiro:guest>&nbsp;-->
+
+    <br><a href="/guest/login">登录页</a>
     <br>
     <shiro:hasRole name="admin">
         <a href="/admin/adminpage">管理员页面</a>
     </shiro:hasRole>
     <br><a href="https://www.baidu.com/">没有权限的也能访问的页面</a>
+    <br><a href="/test">测试连接获取Model数据</a> <span th:text="${key}"></span>
+    <br><a href="/authc/home">首页</a>
 </div>
 
 </body>
