@@ -106,43 +106,51 @@ public class UserController {
      * @return
      */
     @RequestMapping("/login")
-    public String login(@RequestParam("username") String username,
-                        @RequestParam("password") String password) {
+    public ModelAndView login(@RequestParam("username") String username,
+                              @RequestParam("password") String password) {
+        // 跳转的地址
+        String toPage = "/guest/login-fail";
+        //报错后的试图
+        ModelAndView errorView = new ModelAndView(toPage);
 
-        System.out.println("用户执行登录");
-        System.out.println("username = " + username);
-        System.out.println("password = " + password);
+        System.out.println("用户执行登录:username = " + username + "|| password = " + password);
 
         Subject currentUser = SecurityUtils.getSubject();
 
+
         // 如果当前用户已认证(登录)则跳过
         if (!currentUser.isAuthenticated()) {
+            //先校验传入用户名密码合法性
+
+
             // 把用户名和密码封装为 UsernamePasswordToken 对象
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             // rememberme
             token.setRememberMe(false);
+
             try {
+
                 //首先调用 Subject.login(token) 进行登录，
                 // 其会自动委托给 Security Manager，
                 // 调用之前必须通过 SecurityUtils.setSecurityManager() 设置；
                  currentUser.login(token);
-                System.out.println("token = " + token);
+                System.out.println("当前的用户凭证:token = " + token);
             }
             // 若没有指定的账户, 则 shiro 将会抛出 UnknownAccountException 异常.
             catch (UnknownAccountException uae) {
                 log.info("----> There is no user with username of " + token.getPrincipal());
-                return "/guest/login-fail";
+                return errorView;
             }
             // 若账户存在, 但密码不匹配, 则 shiro 会抛出 IncorrectCredentialsException 异常。
             catch (IncorrectCredentialsException ice) {
                 log.info("----> Password for account " + token.getPrincipal() + " was incorrect!");
-                return "/guest/login-fail";
+                return errorView;
             }
             // 用户被锁定的异常 LockedAccountException
             catch (LockedAccountException lae) {
                 log.info("The account for username " + token.getPrincipal() + " is locked.  " +
                         "Please contact your administrator to unlock it.");
-                return "/guest/login-fail";
+                return errorView;
             }
             // ... catch more exceptions here (maybe custom ones specific to your application?
             // 所有认证时异常的父类.
@@ -150,11 +158,13 @@ public class UserController {
                 //unexpected condition?  error?
                 System.out.println("登录异常了" );
                 System.out.println("即将跳转到 /guest/login-fail" );
-                return "/guest/login-fail";
+                return errorView;
             }
         }
+        //登录成功的视图
+        toPage = "authc/login-success";
         System.out.println("即将跳转到 authc/login-success" );
-        return "authc/login-success";
+        return new ModelAndView(toPage);
     }
 
     @RequestMapping("/logout")
