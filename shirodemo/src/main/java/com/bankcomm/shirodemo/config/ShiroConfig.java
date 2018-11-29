@@ -4,6 +4,7 @@ package com.bankcomm.shirodemo.config;
 
 import com.bankcomm.shirodemo.shiro.realm.CustomRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -61,17 +62,20 @@ public class ShiroConfig {
         return defaultAdvisorAutoProxy;
     }
 
-//    /**
-//     * 缓存配置
-//     * @return
-//     */
-//    @Bean
-//    public EhCacheManager getCacheManager() {
-//        EhCacheManager cacheManager = new EhCacheManager();
-//        cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
-//        return cacheManager;
-//    }
-
+/*    *//**
+     * 引入shiro-ehcache缓存配置
+     * 暂时没有配置成功
+     * 2018年11月29日 22:49:02
+     *
+     * @return
+     *//*
+    @Bean
+    public EhCacheManager ehCacheManager() {
+        log.info("------------->ShiroConfiguration.getEhCacheManager()执行");
+        EhCacheManager cacheManager = new EhCacheManager();
+        cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
+        return cacheManager;
+    }*/
 
 
     /**
