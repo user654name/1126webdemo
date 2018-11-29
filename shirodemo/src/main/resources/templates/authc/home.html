@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org" lang="zh_CN"
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
 <head>
     <meta charset="UTF-8">
     <title>HomePage</title>
@@ -9,6 +10,9 @@
 <div align="left">
     <h1>Home Page</h1>
     <h3>您已经登录</h3>
+    <shiro:principal/>
+    <shiro:principal property="username"/>
+    <br>
     <shiro:guest>
         欢迎游客访问，<a href="/guest/login">登录</a>
     </shiro:guest>&nbsp;

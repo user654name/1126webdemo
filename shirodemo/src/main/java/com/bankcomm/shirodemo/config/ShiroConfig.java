@@ -1,7 +1,7 @@
 package com.bankcomm.shirodemo.config;
 
 
-
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.bankcomm.shirodemo.shiro.realm.CustomRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -13,14 +13,17 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.Ordered;
+import org.thymeleaf.dialect.IDialect;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.templateresolver.FileTemplateResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -35,6 +38,47 @@ public class ShiroConfig {
 
     private final Logger log = LoggerFactory.getLogger(ShiroConfig.class);
 
+
+    /**
+     * 2018年11月29日 23:16:29
+     * 为了启动模版对标签支持 引入配置
+     *
+     * @return
+     *//*
+    @Bean
+    public ITemplateResolver fileTemplateResolver(ThymeleafProperties properties) {
+        FileTemplateResolver resolver = new FileTemplateResolver();
+        resolver.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        resolver.setCacheable(properties.isCache());
+        resolver.setSuffix(properties.getSuffix());
+        if (properties.getEncoding() != null) {
+            resolver.setCharacterEncoding(properties.getEncoding().name());
+        }
+        resolver.setTemplateMode(properties.getMode());
+        resolver.setPrefix("./templates/");
+        return resolver;
+    }
+
+    *//**
+     * 2018年11月29日 23:16:29
+     * 为了启动模版对标签支持 引入配置
+     *
+     * @return
+     *//*
+    @Bean
+    public SpringTemplateEngine templateEngine() {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(fileTemplateResolver());
+
+        Set<IDialect> additionalDialects = new HashSet<IDialect>();
+
+        additionalDialects.add(new ShiroDialect());
+
+        templateEngine.setAdditionalDialects(additionalDialects);
+
+        return templateEngine;
+    }
+*/
 
     /**
      * 2018年11月28日 09:58:16
