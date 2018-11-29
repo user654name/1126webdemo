@@ -2,15 +2,12 @@ package com.bankcomm.shirodemo.shiro.realm;
 
 
 import com.bankcomm.shirodemo.bean.User;
-import com.bankcomm.shirodemo.config.ShiroConfig;
+import com.bankcomm.shirodemo.shiro.config.ShiroConfig;
 import com.bankcomm.shirodemo.service.UserService;
-import com.bankcomm.shirodemo.service.UserServiceImpl;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;

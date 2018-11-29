@@ -1,6 +1,7 @@
 package com.bankcomm.shirodemo.controller;
 
 import com.bankcomm.shirodemo.service.TestService;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,7 @@ public class TestController {
         session.setAttribute("key", "value——4000元");
 
         //调试session内容 并销毁session
-        testService.doMethod();
+        testService.doSessionMethod();
 
 
         System.out.println(" = ");
@@ -46,12 +47,13 @@ public class TestController {
             e.printStackTrace();
 
         }
-        System.out.println("销毁shiro-session后 查看 key = " + key);
+        System.out.println("操作shiro-session后 查看 key = " + key);
 
 
-        model.addAttribute("key","GetKeyValue");
+        model.addAttribute("key1","GetKeyValue");
         System.out.println("测试结束 ");
         String toPage = "authc/home";
+
         return new ModelAndView(toPage);
     }
 }

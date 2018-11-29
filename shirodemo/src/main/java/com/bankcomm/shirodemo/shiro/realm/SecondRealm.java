@@ -1,7 +1,7 @@
 //package com.bankcomm.shirodemo.shiro;
 //
 //
-//import com.bankcomm.shirodemo.config.ShiroConfig;
+//import ShiroConfig;
 //import com.bankcomm.shirodemo.mapper.UserMapper;
 //import org.apache.shiro.SecurityUtils;
 //import org.apache.shiro.authc.*;

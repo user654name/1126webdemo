@@ -1,5 +1,6 @@
 package com.bankcomm.shirodemo.controller;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.context.annotation.Role;
 import org.springframework.stereotype.Controller;
@@ -22,12 +23,30 @@ public class UrlController {
 
     @RequestMapping("/guest/login")
     public ModelAndView toPage1() {
-        return new ModelAndView("/guest/login");
+
+        String toPage = "/guest/login";
+        if (SecurityUtils.getSubject().isAuthenticated()) {
+            // 如果已经登录,不跳转到登录页面,直接回首页
+            toPage = "authc/home";
+            System.out.println("即将跳转到" + toPage);
+            return new ModelAndView(toPage);
+        }
+        System.out.println("即将跳转到" + toPage);
+        return new ModelAndView(toPage);
     }
 
     @RequestMapping("/guest/register")
     public ModelAndView toPage2() {
-        return new ModelAndView("/guest/register");
+        String toPage;
+        if (SecurityUtils.getSubject().isAuthenticated()) {
+            // 如果已经登录,不跳转到登录页面，直接回首页
+            toPage = "authc/home";
+            System.out.println("即将跳转到" + toPage);
+            return new ModelAndView(toPage);
+        }
+        toPage="/guest/register";
+        System.out.println("即将跳转到" + toPage);
+        return new ModelAndView(toPage);
     }
 
 
@@ -42,6 +61,10 @@ public class UrlController {
         return new ModelAndView("/authc/notrole");
     }
 
+    @RequestMapping("/authc/infopage")
+    public ModelAndView toPage5() {
+        return new ModelAndView("/authc/infopage");
+    }
 
 
 

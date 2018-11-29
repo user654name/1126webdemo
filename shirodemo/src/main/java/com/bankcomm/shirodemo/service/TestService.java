@@ -22,7 +22,7 @@ public class TestService {
     /**
      * subject获取的Session拥有HttpSession的数据
      */
-    public void doMethod() {
+    public void doSessionMethod() {
 
         // 获取Subject 获取Session
         Session session = SecurityUtils.getSubject().getSession();
@@ -42,6 +42,12 @@ public class TestService {
         System.out.println("设置过期时间为2,400,000毫秒");
         timeout = session.getTimeout();
         System.out.println("当前Session过期时间为timeout = " + timeout);
+        /**
+         * 如果是 Web 应用
+         * 每次进入 ShiroFilter
+         * 都会自动调用 session.touch()
+         * 更新最后访问时间
+         */
         session.touch();// 更新最后访问时间
 //        session.stop();// 销毁会话(可实现注销)
 

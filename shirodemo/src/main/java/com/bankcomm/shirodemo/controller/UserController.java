@@ -111,10 +111,12 @@ public class UserController {
         //报错后的试图
         ModelAndView errorView = new ModelAndView(toPage);
 
+
         System.out.println("用户执行登录:username = " + username + "|| password = " + password);
 
         // 获取Subject 当前用户对象
         Subject currentUser = SecurityUtils.getSubject();
+
 
 
         // 如果当前用户已认证(登录)则跳过
