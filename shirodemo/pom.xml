@@ -68,8 +68,9 @@
         <!--使用EnCache作为缓存技术-->
         <!--ehcache.xml放在类路径下SpringBoot会自动扫描-->
         <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>1.4.0</version>
         </dependency>
 
         <!--SpringBoot热部署插件-->
