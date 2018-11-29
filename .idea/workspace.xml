@@ -3,16 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0d1a96ea-3ef1-4ffb-a665-754dd2b3b189" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/config/ShiroConfig.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/config/ShiroConfig.java" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/TestController.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/TestController.java" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/UrlController.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/UrlController.java" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/UserController.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/controller/UserController.java" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/service/TestService.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/service/TestService.java" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/realm/CustomRealm.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/realm/CustomRealm.java" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/realm/SecondRealm.java" afterPath="$PROJECT_DIR$/shirodemo/src/main/java/com/bankcomm/shirodemo/shiro/realm/SecondRealm.java" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/resources/templates/authc/home.html" afterPath="$PROJECT_DIR$/shirodemo/src/main/resources/templates/authc/home.html" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/register-success.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/register.html" afterPath="$PROJECT_DIR$/shirodemo/src/main/resources/templates/guest/register.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/shirodemo/target/" />
@@ -776,13 +766,6 @@
       <workItem from="1543457239608" duration="22875000" />
       <workItem from="1543495462799" duration="9181000" />
     </task>
-    <task id="LOCAL-00001" summary="2018年11月27日 16:25:05 处理了无法登录的bug 因为表单的action没有权限 被过滤器过滤无法到达Controller中">
-      <created>1543307162381</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1543307162381</updated>
-    </task>
     <task id="LOCAL-00002" summary="2018年11月27日 16:45:54 增加了各种登录异常的处理方式">
       <created>1543308380578</created>
       <option name="number" value="00002" />
@@ -1119,7 +1102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543530399060</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="2018年11月30日 07:05:37 更改目录结构">
+      <created>1543532758565</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1543532758566</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1155,7 +1145,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92280000" />
+    <option name="totallyTimeSpent" value="92310000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="180" y="-9" width="1749" height="1098" extended-state="6" />
@@ -1274,7 +1264,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2018年11月28日 17:13:06&#10;1 调整前端页面url&#10;2 ShiroConfig 优化了过滤器的规则" />
     <MESSAGE value="2018年11月28日 17:19:04&#10;删除CustomRealm.java多余代码 优化导包" />
     <MESSAGE value="2018年11月28日 17:38:19&#10;下班前保存代码 UserSeivice 写了一个密码对比的方法 还没有写内容&#10;Controller里已经写好了大纲 之后再继续完成" />
     <MESSAGE value="2018年11月28日 22:37:34 pom增加注解" />
@@ -1299,7 +1288,8 @@
     <MESSAGE value="2018年11月29日 22:50:23 &#10;shiro-ehcache 更新了缓存配置 替换了原有的ehcache 但是没有配置成功 暂时注释掉" />
     <MESSAGE value="2018年11月29日 23:53:58&#10;暂时保存 出错后回滚一下 没什么改动" />
     <MESSAGE value="2018年11月30日 06:26:14 测试获取Model数据成功" />
-    <option name="LAST_COMMIT_MESSAGE" value="2018年11月30日 06:26:14 测试获取Model数据成功" />
+    <MESSAGE value="2018年11月30日 07:05:37 更改目录结构" />
+    <option name="LAST_COMMIT_MESSAGE" value="2018年11月30日 07:05:37 更改目录结构" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
