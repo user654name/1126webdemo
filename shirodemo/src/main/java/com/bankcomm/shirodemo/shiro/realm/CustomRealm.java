@@ -64,6 +64,7 @@ public class CustomRealm extends AuthorizingRealm {
 
         if (userService == null) {
             System.out.println("userService注入失败");
+            System.out.println(" debug ");
         } else {
             //3. 调用数据库的方法, 从数据库中查询 username 对应的用户记录
             userFromDb = userService.findUserByUsername(username);

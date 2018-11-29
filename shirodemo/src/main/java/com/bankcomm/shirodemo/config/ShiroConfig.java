@@ -168,18 +168,32 @@ public class ShiroConfig {
 
 
     /**
+     * 身份认证Realm，此处的注入不可以缺少。否则会在UserRealm中注入对象会报空指针.
+     *
+     * @return
+     */
+    @Bean
+    public CustomRealm myShiroRealm() {
+        CustomRealm myShiroRealm = new CustomRealm();
+//        myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+        return myShiroRealm;
+    }
+
+
+
+    /**
      * 注入 securityManager
      *
      * @param customRealm 【重要】securityManager依赖于这个参数，若不实现，项目无法启动
      * @return
      */
     @Bean
-    public SecurityManager securityManager(CustomRealm customRealm) {
+    public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         // 设置自定义的realm实现
         // securityManager.setRealm(customRealm);
         // 尝试配置多Realm
-        securityManager.setRealms(myShiroRealms());
+        securityManager.setRealm(myShiroRealm());
         return securityManager;
     }
 

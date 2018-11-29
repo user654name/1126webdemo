@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class UrlController {
-    @RequestMapping("/authc/home")
+    @RequestMapping("/home")
     public ModelAndView toHome() {
         return new ModelAndView("/authc/home");
     }
@@ -27,6 +27,7 @@ public class UrlController {
     public ModelAndView toPage3() {
         return new ModelAndView("/guest/register");
     }
+
 
 
 
