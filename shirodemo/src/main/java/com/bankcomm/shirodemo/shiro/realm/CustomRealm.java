@@ -1,4 +1,4 @@
-package com.bankcomm.shirodemo.shiro;
+package com.bankcomm.shirodemo.shiro.realm;
 
 
 import com.bankcomm.shirodemo.config.ShiroConfig;
@@ -24,7 +24,7 @@ import java.util.Set;
  * @package com.bankcomm.shirodemo.config
  * @project 1126webdemo
  *
- * CustomRealm - 自定义Realm实现类
+ * CustomRealm - 自定义Realm实现类 - 重写了认证和授权方法
  *
  * Realm必须被实现(AuthorizingRealm是抽象类)
  * 必须配置组件注解(@Component作为组件提供给Spring-IoC管理)

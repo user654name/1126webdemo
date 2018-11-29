@@ -2,7 +2,7 @@ package com.bankcomm.shirodemo.config;
 
 
 
-import com.bankcomm.shirodemo.shiro.CustomRealm;
+import com.bankcomm.shirodemo.shiro.realm.CustomRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;

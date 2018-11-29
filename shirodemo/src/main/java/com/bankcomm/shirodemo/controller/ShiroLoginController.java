@@ -1,7 +1,6 @@
 package com.bankcomm.shirodemo.controller;
 
 import com.bankcomm.shirodemo.service.UserService;
-import com.bankcomm.shirodemo.service.UserServiceImpl;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -24,12 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/shiro")
-public class ShiroLoginHandler {
+public class ShiroLoginController {
 
     @Autowired
     private UserService userService;
 
-    private final Logger log = LoggerFactory.getLogger(ShiroLoginHandler.class);
+    private final Logger log = LoggerFactory.getLogger(ShiroLoginController.class);
 
 
 
@@ -95,7 +94,7 @@ public class ShiroLoginHandler {
                 //首先调用 Subject.login(token) 进行登录，
                 // 其会自动委托给 Security Manager，
                 // 调用之前必须通过 SecurityUtils.setSecurityManager() 设置；
-                currentUser.login(token);
+                 currentUser.login(token);
                 System.out.println("token = " + token);
             }
             // 若没有指定的账户, 则 shiro 将会抛出 UnknownAccountException 异常.
