@@ -78,9 +78,9 @@ public class CustomRealm extends AuthorizingRealm {
         //2). credentials: 密码.
         Object credentials = null;
         if ("root".equals(username)) {
-            credentials = "666888";
+            credentials = "111222";
         } else if ("user".equals(username)) {
-            credentials = "123";
+            credentials = "333444";
         }
 
         //3). realmName: 当前 realm 对象的 name. 调用父类的 getName() 方法即可

@@ -23,12 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/shiro")
-public class ShiroLoginController {
+public class LoginController {
 
     @Autowired
     private UserService userService;
 
-    private final Logger log = LoggerFactory.getLogger(ShiroLoginController.class);
+    private final Logger log = LoggerFactory.getLogger(LoginController.class);
 
 
 
