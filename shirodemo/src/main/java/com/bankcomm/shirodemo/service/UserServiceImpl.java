@@ -37,4 +37,12 @@ public class UserServiceImpl implements UserService {
         System.out.println("注册用户--->成功插入:insert = " + insert+"条数据(应为1条)");
         return ok;
     }
+
+    @Override
+    public String getRole(String username) {
+        User selectByUsername = userMapper.selectByUsername(username);
+        String role = selectByUsername.getRole();
+        System.out.println(username + "拥有权限：role = " + role);
+        return role;
+    }
 }

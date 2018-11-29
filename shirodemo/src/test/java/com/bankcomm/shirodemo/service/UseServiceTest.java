@@ -32,4 +32,12 @@ public class UseServiceTest {
         System.out.println("root = " + root);
 
     }
+
+    @Test
+    public void getRole() {
+        String root = userService.getRole("root");
+
+        System.out.println("root = " + root);
+    }
+
 }

@@ -29,4 +29,12 @@ public interface UserService {
      * @return
      */
     boolean insert(User userInsert);
+
+    /**
+     * 获取当前用户的权限
+     *
+     * @param username
+     * @return 权限
+     */
+    String getRole(String username);
 }

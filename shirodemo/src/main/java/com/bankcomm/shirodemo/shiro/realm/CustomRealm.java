@@ -143,18 +143,19 @@ public class CustomRealm extends AuthorizingRealm {
 
         // 准备： 读取用户名
         String username = (String) SecurityUtils.getSubject().getPrincipal();
-        System.out.println("————权限认证————"+username);
+        System.out.println("——权限认证——当前用户——" + username);
 
         // 1 PrincipalCollection获取登录用户信息
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
         // 2 获得该用户角色(fromDB)
-//        String role = userMapper.getRole(username);
+        String role = userService.getRole(username);
         Set<String> set = new HashSet<>();
         //需要将 role 封装到 Set 作为 info.setRoles() 的参数
-//        set.add(role);
+        set.add(role);
         //设置该用户拥有的角色
         info.setRoles(set);
+        System.out.println("当前用户的权限为 : set = " + set);
         return info;
     }
 }
