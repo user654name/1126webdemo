@@ -21,8 +21,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserByUsername(String username) {
+        System.out.println("UserServiceImpl.findUserByUsername");
+        System.out.println("username = " + username);
         User user = userMapper.selectByUsername(username);
-        System.out.println("注册 查询到用户结果为user = " + user);
+        System.out.println("注册/登录findUserByUsername查询到用户结果为user = " + user);
         return user;
 
     }

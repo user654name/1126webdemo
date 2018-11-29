@@ -1,9 +1,7 @@
-package com.bankcomm.shirodemo.mapper;
-
+package com.bankcomm.shirodemo.service;
 
 import com.bankcomm.shirodemo.ShirodemoApplication;
 import com.bankcomm.shirodemo.bean.User;
-import com.bankcomm.shirodemo.dao.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,29 +11,25 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
  * @author Tianqi.Zhang
- * @date 2018/11/28
- * @time 21:39
- * @package com.bankcomm.shirodemo.mapper
+ * @date 2018/11/29
+ * @time 15:37
+ * @package com.bankcomm.shirodemo.service
  * @project 1126webdemo
  * @description
  */
-
-
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
 @SpringBootTest(classes = ShirodemoApplication.class)
-public class UserMapperTest {
+public class UseServiceTest {
 
     @Autowired
-    UserMapper userMapper;
-
+    UserService userService;
 
     @Test
-    public void selectByUsernameTest() {
+    public void findUserByUsernameTest(){
 
-        User user = userMapper.selectByUsername("root");
-        System.out.println("user = " + user);
+        User root = userService.findUserByUsername("root");
+        System.out.println("root = " + root);
 
-        System.out.println(1);
     }
 }

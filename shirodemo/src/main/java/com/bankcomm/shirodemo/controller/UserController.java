@@ -35,8 +35,6 @@ public class UserController {
     private final Logger log = LoggerFactory.getLogger(UserController.class);
 
 
-
-
     /**
      * 执行注册
      *
@@ -115,6 +113,7 @@ public class UserController {
 
         System.out.println("用户执行登录:username = " + username + "|| password = " + password);
 
+        // 获取Subject 当前用户对象
         Subject currentUser = SecurityUtils.getSubject();
 
 
@@ -130,7 +129,7 @@ public class UserController {
 
             try {
 
-                //首先调用 Subject.login(token) 进行登录，
+                // 首先调用 Subject.login(token) 进行登录，
                 // 其会自动委托给 Security Manager，
                 // 调用之前必须通过 SecurityUtils.setSecurityManager() 设置；
                  currentUser.login(token);

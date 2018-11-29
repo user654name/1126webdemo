@@ -1,6 +1,7 @@
 package com.bankcomm.shirodemo.service;
 
 import com.bankcomm.shirodemo.bean.User;
+import org.springframework.stereotype.Service;
 
 /**
  * @author Tianqi.Zhang
@@ -10,15 +11,22 @@ import com.bankcomm.shirodemo.bean.User;
  * @project 1126webdemo
  * @description
  */
+@Service
 public interface UserService {
 
     /**
-     * 用户注册的用户名 与 数据库内所有用户名对比
+     * 根据用户名 查询 用户信息
      *
      * @param username
-     * @return true 代表用户名已经存在
+     * @return
      */
     User findUserByUsername(String username);
 
+    /***
+     * 注册新用户
+     *
+     * @param userInsert
+     * @return
+     */
     boolean insert(User userInsert);
 }

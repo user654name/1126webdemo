@@ -1,12 +1,16 @@
 package com.bankcomm.shirodemo.shiro.realm;
 
 
+import com.bankcomm.shirodemo.bean.User;
 import com.bankcomm.shirodemo.config.ShiroConfig;
 import com.bankcomm.shirodemo.service.UserService;
+import com.bankcomm.shirodemo.service.UserServiceImpl;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -49,45 +53,33 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        System.out.println("————身份认证方法————");
+        System.out.println("————进入身份认证（登录）方法————");
         // 1.把AuthenticationInfo转换为PasswordToken
         UsernamePasswordToken upToken = (UsernamePasswordToken) authenticationToken;
 
         //2. 从 UsernamePasswordToken 中来获取 username
         String username = upToken.getUsername();
 
-        //3. 调用数据库的方法, 从数据库中查询 username 对应的用户记录
-        System.out.println("从数据库中获取 username: " + username + " 所对应的用户信息.");
+        User userFromDb = null;
 
-        //4. 若用户不存在, 则可以抛出 UnknownAccountException 异常
-        // "unknown".equals(username)这只是举例子 假设unknown用户
-        if ("unknown".equals(username)) {
-            throw new UnknownAccountException("用户不存在!");
+        if (userService == null) {
+            System.out.println("userService注入失败");
+        } else {
+            //3. 调用数据库的方法, 从数据库中查询 username 对应的用户记录
+            userFromDb = userService.findUserByUsername(username);
         }
 
-        //5. 根据用户信息的情况, 决定是否需要抛出其他的 AuthenticationException 异常.
-        // 这也是举例子 这里假设monster用户被锁定
-        if ("monster".equals(username)) {
-            throw new LockedAccountException("用户被锁定");
-        }
 
-        //6. 根据用户的情况, 来构建 AuthenticationInfo 对象并返回. 通常使用的实现类为: SimpleAuthenticationInfo
-        //【说明】以下信息是从数据库中获取的.这里只是模拟
-        //1). principal: 认证的实体信息. 可以是 username, 也可以是数据表对应的用户的实体类对象.
-        Object principal = username;
-        //2). credentials: 密码.
-        Object credentials = null;
-        if ("root".equals(username)) {
-            credentials = "111222";
-        } else if ("user".equals(username)) {
-            credentials = "333444";
-        }
-
-        //3). realmName: 当前 realm 对象的 name. 调用父类的 getName() 方法即可
+        //3-1). principal: 认证的实体信息. 这里用username
+        Object principal = userFromDb.getUsername();
+        //3-2). credentials: 密码.
+        Object credentials = userFromDb.getPassword();
+        //3-3). realmName: 当前 realm 对象的 name. 调用父类的 getName() 方法即可
         String realmName = getName();
-        //4). 盐值
-        String salt = "自定义盐值";
-        /*
+        //3-4). 盐值
+        String salt = "可以自定义盐值如UUID";
+
+         /*
             ByteSource - 接口
             Util - 内部类
             bytes() - 返回SimpleByteSource
@@ -95,10 +87,27 @@ public class CustomRealm extends AuthorizingRealm {
           */
         ByteSource credentialsSalt = ByteSource.Util.bytes(salt);
 
+        /*
+
+                //4. 若用户不存在, 则可以抛出 UnknownAccountException 异常
+                // "unknown".equals(username)这只是举例子 假设unknown用户
+                if ("Unknown".equals(username)) {
+                    throw new UnknownAccountException("用户不存在!");
+                }
+
+                //5. 根据用户信息的情况, 决定是否需要抛出其他的 AuthenticationException 异常.
+                // 这也是举例子 这里假设monster用户被锁定
+                if ("Locked".equals(username)) {
+                    throw new LockedAccountException("用户被锁定");
+                }
+        */
+
+        //6. 根据用户的情况, 来构建 AuthenticationInfo 对象并返回. 通常使用的实现类为: SimpleAuthenticationInfo
         SimpleAuthenticationInfo info = null;
-//        info = new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName);
+
+//        info = new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName);//加盐
         info= new SimpleAuthenticationInfo(principal,credentials,realmName);
-        System.out.println("SimpleAuthenticationInfo info = " + info);
+        System.out.println("当前数据库查询的SimpleAuthenticationInfo对象信息：info = " + info);
         return info;
         //        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 //        // 从数据库获取对应用户名密码的用户
