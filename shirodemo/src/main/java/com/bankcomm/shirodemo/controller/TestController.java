@@ -2,6 +2,9 @@ package com.bankcomm.shirodemo.controller;
 
 import com.bankcomm.shirodemo.service.TestService;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+
+import static at.pollux.thymeleaf.shiro.processor.ShiroFacade.isAuthenticated;
 
 /**
  * @author Tianqi.Zhang
@@ -24,11 +29,19 @@ public class TestController {
     @Autowired
     TestService testService;
 
+
+    private final Logger log = LoggerFactory.getLogger(TestController.class);
+
+
     @RequestMapping("/test")
     public ModelAndView doTest(HttpSession session, Model model) {
+
+        Subject subject = SecurityUtils.getSubject();
+        Object principal = subject.getPrincipal();//可以加入判断null再执行
+        log.info("用户" + principal + "准备设置并返回session");
+
         System.out.println("TestController.doTest");
         session.setAttribute("key", "httpSsessionKey");
-
         //调试session内容 并销毁session
         testService.doSessionMethod();
 
@@ -60,6 +73,12 @@ public class TestController {
 
     @RequestMapping("/getkey")
     public ModelAndView getSessionByKey(HttpSession session, Model model) {
+
+        Subject subject = SecurityUtils.getSubject();
+        Object principal = subject.getPrincipal();//可以加入判断null再执行
+        log.info("用户" + principal + "准备获取session");
+
+
         Object key = session.getAttribute("key");
         System.out.println("当前session域的key为 = " + key);
         model.addAttribute("key", key);
@@ -73,6 +92,14 @@ public class TestController {
 
     @RequestMapping("/setkey")
     public ModelAndView setKey(HttpSession session, Model model) {
+
+        Subject subject = SecurityUtils.getSubject();
+        Object principal = subject.getPrincipal();//可以加入判断null再执行
+        log.info("用户" + principal + "准备设置session");
+
+
+
+
         System.out.println("TestController.set");
         session.setAttribute("key","newKey");
         model.addAttribute("key",session.getAttribute("key"));
@@ -84,6 +111,13 @@ public class TestController {
 
     @RequestMapping("/removekey")
     public ModelAndView removeKey(HttpSession session, Model model) {
+
+
+        Subject subject = SecurityUtils.getSubject();
+        Object principal = subject.getPrincipal();//可以加入判断null再执行
+        log.info("用户" + principal + "准备删除session");
+
+
         System.out.println("TestController.removeKey");
         session.removeAttribute("key");
         System.out.println("key的内容已删除");
