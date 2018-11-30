@@ -25,9 +25,9 @@ public class TestController {
     TestService testService;
 
     @RequestMapping("/test")
-    public ModelAndView doTest(HttpSession session,Model model) {
+    public ModelAndView doTest(HttpSession session, Model model) {
         System.out.println("TestController.doTest");
-        session.setAttribute("key", "value——4000元");
+        session.setAttribute("key", "httpSsessionKey");
 
         //调试session内容 并销毁session
         testService.doSessionMethod();
@@ -50,10 +50,45 @@ public class TestController {
         System.out.println("操作shiro-session后 查看 key = " + key);
 
 
-        model.addAttribute("key1","GetKeyValue");
+        model.addAttribute("key",session.getAttribute("key"));
         System.out.println("测试结束 ");
         String toPage = "authc/home";
+        System.out.println("即将跳转toPage = " + toPage);
+        return new ModelAndView(toPage);
+    }
 
+
+    @RequestMapping("/getkey")
+    public ModelAndView getSessionByKey(HttpSession session, Model model) {
+        Object key = session.getAttribute("key");
+        System.out.println("当前session域的key为 = " + key);
+        model.addAttribute("key", key);
+        System.out.println("key加入Model");
+
+        String toPage = "authc/home";
+        System.out.println("即将跳转toPage = " + toPage);
+        return new ModelAndView(toPage);
+    }
+
+
+    @RequestMapping("/setkey")
+    public ModelAndView setKey(HttpSession session, Model model) {
+        System.out.println("TestController.set");
+        session.setAttribute("key","newKey");
+        model.addAttribute("key",session.getAttribute("key"));
+        System.out.println("设置 key = newKey");
+        String toPage = "authc/home";
+        System.out.println("即将跳转toPage = " + toPage);
+        return new ModelAndView(toPage);
+    }
+
+    @RequestMapping("/removekey")
+    public ModelAndView removeKey(HttpSession session, Model model) {
+        System.out.println("TestController.removeKey");
+        session.removeAttribute("key");
+        System.out.println("key的内容已删除");
+        String toPage = "authc/home";
+        System.out.println("即将跳转toPage = " + toPage);
         return new ModelAndView(toPage);
     }
 }

@@ -23,9 +23,10 @@
     <!--<shiro:hasRole name="admin">    </shiro:hasRole>-->
     <a href="/admin/adminpage">管理员页面</a>
     <br><a href="/authc/infopage">普通页面</a>
-    <br><a href="/test">测试连接获取Model数据</a>
-    <span th:text="${key1}"></span>
-    <span th:text="${key}"></span>
+    <br><a href="/test">Session中设置key=shiroKey并读取</a> <span th:text="${key}"></span>
+    <br><a href="/setkey">Session中设置key=newKey </a>
+    <br><a href="/getkey">读取SessionKey</a>
+    <br><a href="/removekey">删除SessionKey</a>
     <br><a href="/authc/home">首页</a>
     <br><a href="/shiro/logout">注销</a>
 
