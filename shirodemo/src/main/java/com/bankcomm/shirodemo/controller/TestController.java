@@ -27,11 +27,11 @@ import static at.pollux.thymeleaf.shiro.processor.ShiroFacade.isAuthenticated;
 public class TestController {
 
     @Autowired
+
+
     TestService testService;
 
-
     private final Logger log = LoggerFactory.getLogger(TestController.class);
-
 
     @RequestMapping("/test")
     public ModelAndView doTest(HttpSession session, Model model) {
