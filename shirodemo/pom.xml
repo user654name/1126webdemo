@@ -104,13 +104,13 @@
 
 
     <build>
-        <!-- Maven -->
         <plugins>
+            <!-- 整合Maven -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-        </plugins>
+              </plugins>
     </build>
 
 
