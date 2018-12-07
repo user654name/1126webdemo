@@ -180,6 +180,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/guest/*", "anon");
         filterChainDefinitionMap.put("/shiro/register", "anon");
         filterChainDefinitionMap.put("/shiro/login", "anon");
+        filterChainDefinitionMap.put("/druid/** ", "anon");
         filterChainDefinitionMap.put("/shiro/logout", "logout");
         //加入权限页面2018年11月29日 06:12:49
         filterChainDefinitionMap.put("/admin/adminpage", "roles[admin]");

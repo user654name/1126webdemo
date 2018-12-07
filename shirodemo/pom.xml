@@ -72,11 +72,11 @@
         </dependency>
 
         <!-- 2018年11月27日 14:48:22 加入阿里连接池druid -->
-        <!--<dependency>-->
-            <!--<groupId>com.alibaba</groupId>-->
-            <!--<artifactId>druid</artifactId>-->
-            <!--<version>1.1.10</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.10</version>
+        </dependency>
 
 
         <!--使用EnCache作为缓存技术-->
@@ -110,7 +110,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-              </plugins>
+        </plugins>
     </build>
 
 
