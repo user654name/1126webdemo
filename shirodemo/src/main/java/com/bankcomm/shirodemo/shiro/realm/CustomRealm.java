@@ -9,6 +9,7 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.realm.ldap.DefaultLdapRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ import java.util.Set;
  * 注入SecurityManager时，依赖这个Realm实现类
  */
 @Component
-public class CustomRealm extends AuthorizingRealm {
+public class CustomRealm extends DefaultLdapRealm {
 
     @Autowired
     UserService userService;
