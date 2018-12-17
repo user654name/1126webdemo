@@ -2,7 +2,7 @@ package com.bankcomm.shirodemo.shiro.realm;
 
 
 import com.bankcomm.shirodemo.bean.User;
-import com.bankcomm.shirodemo.shiro.config.ShiroConfig;
+import com.bankcomm.shirodemo.config.ShiroConfig;
 import com.bankcomm.shirodemo.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;

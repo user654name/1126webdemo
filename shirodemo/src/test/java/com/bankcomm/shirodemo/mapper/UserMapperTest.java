@@ -35,7 +35,14 @@ public class UserMapperTest {
 
         User user = userMapper.selectByUsername("root");
         System.out.println("user = " + user);
-
+        System.out.println("UserMapperTest.selectByUsernameTest");
+        System.out.println("user = " + user);
         System.out.println(1);
+
+//        User
+
+
+
+
     }
 }

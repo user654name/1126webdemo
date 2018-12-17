@@ -1,9 +1,11 @@
-package com.bankcomm.shirodemo.shiro.config;
+package com.bankcomm.shirodemo.config;
 
 
+import com.bankcomm.shirodemo.shiro.SecondRealm;
 import com.bankcomm.shirodemo.shiro.realm.CustomRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -14,7 +16,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -213,11 +218,22 @@ public class ShiroConfig {
      *
      * @return
      */
-    @Bean
+    @Bean(name = "myShiroRealm")
+    @DependsOn("lifecycleBeanPostProcessor")
     public CustomRealm myShiroRealm() {
-        CustomRealm myShiroRealm = new CustomRealm();
+//        CustomRealm myShiroRealm = new CustomRealm();
+//        SecondRealm secondRealm = new SecondRealm();
+//        List list = new  ArrayList();
+//        list.add(myShiroRealm);
+//        list.add(secondRealm);
 //        myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
-        return myShiroRealm;
+        return new CustomRealm();
+    }
+
+    @Bean(name = "myShiroRealm2")
+    @DependsOn("lifecycleBeanPostProcessor")
+    public SecondRealm myShiroRealm2() {
+        return new SecondRealm();
     }
 
 
@@ -234,7 +250,11 @@ public class ShiroConfig {
         // 设置自定义的realm实现
         // securityManager.setRealm(customRealm);
         // 尝试配置多Realm
-        securityManager.setRealm(myShiroRealm());
+//        securityManager.setRealm(myShiroRealm());
+        List realms = new ArrayList();
+        realms.add(myShiroRealm());
+        realms.add(myShiroRealm2());
+        securityManager.setRealms(realms);
         return securityManager;
     }
 
