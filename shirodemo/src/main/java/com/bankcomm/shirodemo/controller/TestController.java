@@ -1,6 +1,8 @@
 package com.bankcomm.shirodemo.controller;
 
 import com.bankcomm.shirodemo.service.TestService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -24,14 +27,42 @@ import static at.pollux.thymeleaf.shiro.processor.ShiroFacade.isAuthenticated;
  * @description
  */
 @Controller
+@Api(description = "测试接口")
 public class TestController {
 
     @Autowired
-
-
     TestService testService;
 
     private final Logger log = LoggerFactory.getLogger(TestController.class);
+
+
+
+    @ResponseBody
+    @RequestMapping("/aaa")
+    public String dosth(){
+        return "OK";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    @ApiOperation(value = "测试Json" ,  notes="测试JsonNote")
+    @RequestMapping("/ceshi")
+    @ResponseBody
+    public String ceshi(){
+        return "json data is me";
+    }
+
+
+
 
     @RequestMapping("/test")
     public ModelAndView doTest(HttpSession session, Model model) {

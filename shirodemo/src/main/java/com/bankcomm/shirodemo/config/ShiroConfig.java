@@ -4,10 +4,12 @@ package com.bankcomm.shirodemo.config;
 import com.bankcomm.shirodemo.shiro.SecondRealm;
 import com.bankcomm.shirodemo.shiro.realm.CustomRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.util.Factory;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -182,6 +184,7 @@ public class ShiroConfig {
         //管理员，需要角色权限 “admin”
 //        filterChainDefinitionMap.put("/admin/**", "roles[admin]");
         //开放登陆接口
+        filterChainDefinitionMap.put("/swagger-ui.html**","anon");
         filterChainDefinitionMap.put("/guest/*", "anon");
         filterChainDefinitionMap.put("/shiro/register", "anon");
         filterChainDefinitionMap.put("/shiro/login", "anon");
@@ -246,7 +249,12 @@ public class ShiroConfig {
      */
     @Bean
     public SecurityManager securityManager() {
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+
+//        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+//        DefaultWebSecurityManager securityManager = (DefaultWebSecurityManager) factory.getInstance();
+//
+
+                DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         // 设置自定义的realm实现
         // securityManager.setRealm(customRealm);
         // 尝试配置多Realm

@@ -2,6 +2,8 @@ package com.bankcomm.shirodemo.controller;
 
 import com.bankcomm.shirodemo.bean.User;
 import com.bankcomm.shirodemo.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -25,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @description
  */
 
+@Api(description = "用户接口")
 @Controller
 @RequestMapping("/shiro")
 public class UserController {
@@ -42,6 +45,7 @@ public class UserController {
      * @param password
      * @return
      */
+    @ApiOperation(value = "新增用户" ,  notes="新增注册")
     @RequestMapping("/register")
     public ModelAndView register(@RequestParam("username") String username,
                                  @RequestParam("password") String password) {

@@ -25,7 +25,7 @@ import java.util.Set;
  * @date 2018/11/26
  * @package com.bankcomm.shirodemo.config
  * @project 1126webdemo
- *
+ *  
  * CustomRealm - 自定义Realm实现类 - 重写了认证和授权方法
  *
  * Realm必须被实现(AuthorizingRealm是抽象类)
@@ -33,7 +33,7 @@ import java.util.Set;
  * 注入SecurityManager时，依赖这个Realm实现类
  */
 @Component
-public class CustomRealm extends DefaultLdapRealm {
+public class CustomRealm extends AuthorizingRealm {
 
     @Autowired
     UserService userService;

@@ -6,9 +6,15 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.realm.ldap.DefaultLdapContextFactory;
 import org.apache.shiro.realm.ldap.DefaultLdapRealm;
+import org.apache.shiro.realm.ldap.JndiLdapContextFactory;
+import org.apache.shiro.realm.ldap.LdapContextFactory;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.stereotype.Component;
+
+import javax.naming.NamingException;
+import javax.naming.ldap.LdapContext;
 
 /**
  * 这个Realm复制自 CustomRealm
@@ -32,32 +38,72 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecondRealm extends DefaultLdapRealm {
 
-    /**
-     * 获取身份验证信息
-     * Shiro中，最终是通过 Realm 来获取应用程序中的用户、角色及权限信息的
-     * 若使用密码非明文存储 需要调用SimpleAuthenticationInfo的4参数的方法
-     *
-     * @param authenticationToken 用户身份信息 token
-     * @return 返回封装了用户信息的 AuthenticationInfo 实例
-     * @see ShiroConfig 加密策略配置
-     */
-    @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        System.out.println("第二个Realm——SecondRealm.doGetAuthenticationInfo");
-        System.out.println("————第二个Realm——身份认证方法————");
 
-        return null;
- }
-
-    /**
-     * 获取授权信息(获取用户对应的权限)
-     *
-     * @param principalCollection
-     * @return
-     */
+    // 1
     @Override
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        System.out.println("————权限认证————");
-     return null;
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        return super.doGetAuthenticationInfo(token);
     }
+
+    // 2
+    @Override
+    public LdapContextFactory getContextFactory() {
+        // 配置LdapContext尝试配置类属性
+
+
+        return super.getContextFactory();
+    }
+
+    // 3
+    @Override
+    protected AuthenticationInfo queryForAuthenticationInfo(AuthenticationToken token, LdapContextFactory ldapContextFactory) throws NamingException {
+        return super.queryForAuthenticationInfo(token, ldapContextFactory);
+    }
+
+    // 4
+    @Override
+    protected Object getLdapPrincipal(AuthenticationToken token) {
+        return super.getLdapPrincipal(token);
+    }
+
+    // 5
+    @Override
+    protected String getUserDn(String principal) throws IllegalArgumentException, IllegalStateException {
+        return super.getUserDn(principal);
+    }
+
+    // 6
+    @Override
+    protected String getUserDnPrefix() {
+        return super.getUserDnPrefix();
+    }
+
+    // 7
+    @Override
+    protected String getUserDnSuffix() {
+        return super.getUserDnSuffix();
+    }
+
+    @Override
+    public void setUserDnTemplate(String template) throws IllegalArgumentException {
+        super.setUserDnTemplate(template);
+    }
+
+    @Override
+    public String getUserDnTemplate() {
+        return super.getUserDnTemplate();
+
+    }
+    @Override
+    public void setContextFactory(LdapContextFactory contextFactory) {
+        super.setContextFactory(contextFactory);
+    }
+
+
+    @Override
+    protected AuthenticationInfo createAuthenticationInfo(AuthenticationToken token, Object ldapPrincipal, Object ldapCredentials, LdapContext ldapContext) throws NamingException {
+        return super.createAuthenticationInfo(token, ldapPrincipal, ldapCredentials, ldapContext);
+    }
+
+
 }
