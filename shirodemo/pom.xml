@@ -8,7 +8,7 @@
     <groupId>com.bankcomm</groupId>
     <artifactId>shirodemo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>shirodemo</name>
     <description>Demo project for Spring Boot</description>
@@ -104,31 +104,54 @@
         </dependency>
 
 
-        <!--Ldap-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-ldap</artifactId>
-        </dependency>
-        <!-- LDAP测试-->
-        <dependency>
-            <groupId>com.unboundid</groupId>
-            <artifactId>unboundid-ldapsdk</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--&lt;!&ndash;Ldap&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-data-ldap</artifactId>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; LDAP测试&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>com.unboundid</groupId>-->
+            <!--<artifactId>unboundid-ldapsdk</artifactId>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+
+        <!--&lt;!&ndash; cas单点登录 shiro已经过期 &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.shiro</groupId>-->
+            <!--<artifactId>shiro-cas</artifactId>-->
+            <!--<version>1.4.0</version>-->
+        <!--</dependency>-->
 
         <!-- cas单点登录 -->
         <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-cas</artifactId>
-            <version>1.4.0</version>
+            <groupId>org.pac4j</groupId>
+            <artifactId>pac4j-cas</artifactId>
+            <version>3.3.0</version>
+            <scope>runtime</scope>
         </dependency>
 
-
+        <!-- cas单点登录 shiro官方指定 PAC4J Implementation For Shiro  -->
         <dependency>
             <groupId>io.buji</groupId>
             <artifactId>buji-pac4j</artifactId>
             <version>4.0.0</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/io.buji/buji-pac4j-core -->
+        <!--<dependency>-->
+        <!--<groupId>io.buji</groupId>-->
+        <!--<artifactId>buji-pac4j-core</artifactId>-->
+        <!--<version>1.4.3</version>-->
+        <!--</dependency>-->
+
+
+        <!--<dependency>-->
+        <!--<groupId>io.buji</groupId>-->
+        <!--<artifactId>buji-pac4j</artifactId>-->
+        <!--<version>4.0.0</version>-->
+        <!--</dependency>-->
 
 
         <!-- swagger -->
@@ -175,7 +198,7 @@
                 <configuration>
                     <!--<urlEncoding>UTF-8</urlEncoding>-->
                     <path>/</path>
-                    <port>18888</port>
+                    <port>9090</port>
                 </configuration>
             </plugin>
         </plugins>

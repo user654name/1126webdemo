@@ -1,15 +1,14 @@
 package com.bankcomm.shirodemo.config;
 
 
-import com.bankcomm.shirodemo.shiro.SecondRealm;
+import com.bankcomm.shirodemo.shiro.MyLdapRealm;
 import com.bankcomm.shirodemo.shiro.realm.CustomRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.realm.Realm;
+import org.apache.shiro.realm.ldap.JndiLdapContextFactory;
+import org.apache.shiro.realm.ldap.LdapContextFactory;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.util.Factory;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ *Ldap的Realm也配置在这里
  *
  * @author Tianqi.Zhang
  * @date 2018/11/26
@@ -35,6 +35,77 @@ import java.util.Map;
 public class ShiroConfig {
 
     private final Logger log = LoggerFactory.getLogger(ShiroConfig.class);
+
+    /**
+     * Ldap链接等配置
+     *
+     * 配置好放入自定Realm
+     */
+    @Bean
+    public LdapContextFactory ldapContextFactory() {
+        JndiLdapContextFactory factory = new JndiLdapContextFactory();
+        factory.setUrl("ldap:182.119.168.147:1389");
+        factory.setPoolingEnabled(true);
+        return factory;
+    }
+
+    /**
+     * 用于Ldap的自定Realm
+     *
+     * 配置好放入securityManager
+     */
+    @Bean
+    public MyLdapRealm myRealm2() {
+        MyLdapRealm myLdapRealm = new MyLdapRealm();
+        // 将Ldap配置放入
+        myLdapRealm.setContextFactory(ldapContextFactory());
+        return myLdapRealm;
+    }
+
+
+
+
+
+
+    /**
+     * 身份认证Realm，此处的注入不可以缺少。否则会在UserRealm中注入对象会报空指针.
+     *
+     * @return
+     */
+    @Bean(name = "myShiroRealm")
+    @DependsOn("lifecycleBeanPostProcessor")
+    public CustomRealm myRealm1() {
+        return new CustomRealm();
+    }
+
+
+
+    /**
+     * 注入 securityManager
+     *
+     * @param customRealm 【重要】securityManager依赖于这个参数，若不实现，项目无法启动
+     * @return
+     */
+    @Bean
+    public SecurityManager securityManager() {
+
+//        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+//        DefaultWebSecurityManager securityManager = (DefaultWebSecurityManager) factory.getInstance();
+//
+
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        // 设置自定义的realm实现
+        // securityManager.setRealm(customRealm);
+        // 尝试配置多Realm
+//        securityManager.setRealm(myShiroRealm());
+        List realms = new ArrayList();
+        realms.add(myRealm1());
+        realms.add(myRealm2());
+        securityManager.setRealms(realms);
+        return securityManager;
+    }
+
+
 
 
     /**
@@ -77,6 +148,7 @@ public class ShiroConfig {
         return templateEngine;
     }
 */
+
 
     /**
      * 2018年11月28日 09:58:16
@@ -215,56 +287,6 @@ public class ShiroConfig {
 //        return myShiroRealms;
 //    }
 
-
-    /**
-     * 身份认证Realm，此处的注入不可以缺少。否则会在UserRealm中注入对象会报空指针.
-     *
-     * @return
-     */
-    @Bean(name = "myShiroRealm")
-    @DependsOn("lifecycleBeanPostProcessor")
-    public CustomRealm myShiroRealm() {
-//        CustomRealm myShiroRealm = new CustomRealm();
-//        SecondRealm secondRealm = new SecondRealm();
-//        List list = new  ArrayList();
-//        list.add(myShiroRealm);
-//        list.add(secondRealm);
-//        myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
-        return new CustomRealm();
-    }
-
-    @Bean(name = "myShiroRealm2")
-    @DependsOn("lifecycleBeanPostProcessor")
-    public SecondRealm myShiroRealm2() {
-        return new SecondRealm();
-    }
-
-
-
-    /**
-     * 注入 securityManager
-     *
-     * @param customRealm 【重要】securityManager依赖于这个参数，若不实现，项目无法启动
-     * @return
-     */
-    @Bean
-    public SecurityManager securityManager() {
-
-//        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
-//        DefaultWebSecurityManager securityManager = (DefaultWebSecurityManager) factory.getInstance();
-//
-
-                DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        // 设置自定义的realm实现
-        // securityManager.setRealm(customRealm);
-        // 尝试配置多Realm
-//        securityManager.setRealm(myShiroRealm());
-        List realms = new ArrayList();
-        realms.add(myShiroRealm());
-        realms.add(myShiroRealm2());
-        securityManager.setRealms(realms);
-        return securityManager;
-    }
 
     /**
      *

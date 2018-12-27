@@ -1,4 +1,4 @@
-package com.bankcomm.shirodemo.config;
+package com.bankcomm.shirodemo.config.outdated;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;

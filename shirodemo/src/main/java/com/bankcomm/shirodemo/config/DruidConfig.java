@@ -36,7 +36,7 @@ public class DruidConfig {
 //        //ip黑名单
 //        initParameters.put("deny", "");
 //        //如果某个ip同时存在，deny优先于allow
-//        servletRegistrationBean.setInitParameters(initParameters);
+        servletRegistrationBean.setInitParameters(initParameters);
         return servletRegistrationBean;
     }
 
