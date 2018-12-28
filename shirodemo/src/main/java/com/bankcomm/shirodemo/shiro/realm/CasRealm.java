@@ -12,6 +12,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.pac4j.core.profile.CommonProfile;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -30,6 +31,10 @@ import java.util.List;
 @Component
 public class CasRealm extends Pac4jRealm {
 
+    /**
+     * 客户端名称
+     */
+    @Value("${cas.client-name}")
     private String clientName;
 
     /**

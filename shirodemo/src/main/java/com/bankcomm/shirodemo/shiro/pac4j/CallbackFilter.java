@@ -7,6 +7,7 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**
+ * 这个类若带有@Component注解会报错！
  * @author Tianqi.Zhang
  * @date 2018/12/28
  * @time 16:45

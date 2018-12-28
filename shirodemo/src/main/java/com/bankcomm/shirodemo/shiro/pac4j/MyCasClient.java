@@ -7,6 +7,7 @@ import org.pac4j.core.context.WebContext;
 import org.pac4j.core.context.session.SessionStore;
 import org.pac4j.core.redirect.RedirectAction;
 import org.pac4j.core.util.CommonHelper;
+
 /**
  * @author Tianqi.Zhang
  * @date 2018/12/28
@@ -15,12 +16,12 @@ import org.pac4j.core.util.CommonHelper;
  * @project 1126webdemo
  * @description
  */
-public class CasClient extends org.pac4j.cas.client.CasClient {
-    public CasClient() {
+public class MyCasClient extends org.pac4j.cas.client.CasClient {
+    public MyCasClient() {
         super();
     }
 
-    public CasClient(CasConfiguration configuration) {
+    public MyCasClient(CasConfiguration configuration) {
         super(configuration);
     }
 

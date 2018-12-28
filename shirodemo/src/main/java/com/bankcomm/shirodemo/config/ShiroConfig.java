@@ -4,6 +4,9 @@ package com.bankcomm.shirodemo.config;
 import com.bankcomm.shirodemo.shiro.MyLdapRealm;
 import com.bankcomm.shirodemo.shiro.realm.CasRealm;
 import com.bankcomm.shirodemo.shiro.realm.CustomRealm;
+import io.buji.pac4j.filter.CallbackFilter;
+import io.buji.pac4j.filter.LogoutFilter;
+import io.buji.pac4j.filter.SecurityFilter;
 import io.buji.pac4j.subject.Pac4jSubjectFactory;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
@@ -17,18 +20,20 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.pac4j.core.config.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.web.filter.DelegatingFilterProxy;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.DispatcherType;
+import javax.servlet.Filter;
+import java.util.*;
 
 /**
  *Ldap的Realm也配置在这里
@@ -50,22 +55,16 @@ public class ShiroConfig {
      */
     @Value("${cas.project.url}")
     private String projectUrl;
-
     /**
      * 项目cas服务路径
      */
     @Value("${cas.server.url}")
     private String casServerUrl;
-
     /**
      * 客户端名称
      */
     @Value("${cas.client-name}")
     private String clientName;
-
-
-
-
 
     /**
      * Ldap链接等配置
@@ -208,6 +207,137 @@ public class ShiroConfig {
         return advisor;
     }
 
+
+    /**
+     * 过滤器注册
+     */
+    @Bean
+    public FilterRegistrationBean filterRegistrationBean() {
+        FilterRegistrationBean filterRegistration = new FilterRegistrationBean();
+        filterRegistration.setFilter(new DelegatingFilterProxy("shiroFilter"));
+        //  该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理
+        filterRegistration.addInitParameter("targetFilterLifecycle", "true");
+        filterRegistration.setEnabled(true);
+        filterRegistration.addUrlPatterns("/*");
+        filterRegistration.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.FORWARD);
+        return filterRegistration;
+    }
+
+
+    /**
+     * 加载shiroFilter权限控制规则（从数据库读取然后配置）
+     * @param shiroFilterFactoryBean
+     */
+    private void loadShiroCasFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean){
+        /*下面这些规则配置最好配置到配置文件中 */
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+        filterChainDefinitionMap.put("/", "securityFilter");
+        filterChainDefinitionMap.put("/application/**", "securityFilter");
+        filterChainDefinitionMap.put("/index", "securityFilter");
+        filterChainDefinitionMap.put("/callback", "callbackFilter");
+        filterChainDefinitionMap.put("/logout", "logout");
+        filterChainDefinitionMap.put("/**","anon");
+        // filterChainDefinitionMap.put("/user/edit/**", "authc,perms[user:edit]");
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+    }
+
+    /**
+     * 过滤器默认权限表
+     * {
+     *    anon=anon 匿名访问,
+     *    authc=authc,
+     *    authcBasic=authcBasic,
+     *    logout=logout 登出,
+     *    noSessionCreation=noSessionCreation,
+     *    perms=perms,
+     *    port=port,
+     *    rest=rest,
+     *    roles=roles,
+     *    ssl=ssl,
+     *    user=user }
+     *
+     * anon, authc, authcBasic, user 是第一组认证过滤器
+     * perms, port, rest, roles, ssl 是第二组授权过滤器
+     *
+     * user 和 authc 的不同：
+     * 当应用开启了rememberMe时, 用户下次访问时可以是一个user, 但绝不会是authc,
+     * 因为authc是需要重新认证的, user表示用户不一定已通过认证,
+     * 只要曾被Shiro记住过登录状态的用户就可以正常发起请求,比如rememberMe
+     * 以前的一个用户登录时开启了rememberMe, 然后他关闭浏览器, 下次再访问时他就是一个user, 而不会authc
+     *
+     * @param securityManager 初始化 ShiroFilterFactoryBean 的时候需要注入 SecurityManager
+     */
+    @Bean("shiroFilter")
+    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager,Config config) {
+
+
+        clientName="client0";
+        projectUrl="http://www.ssoclient2.com:10033";
+        casServerUrl="http://www.cas.com";
+        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        // 必须设置 SecurityManager
+        shiroFilterFactoryBean.setSecurityManager(securityManager);
+        //shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+        // 添加casFilter到shiroFilter中
+        loadShiroCasFilterChain(shiroFilterFactoryBean);
+
+
+
+        ///////////////////////////////
+        Map<String, Filter> filters = new HashMap<>(3);
+        //cas 资源认证拦截器
+        SecurityFilter securityFilter = new SecurityFilter();
+        securityFilter.setConfig(config);
+        securityFilter.setClients(clientName);
+        filters.put("securityFilter", securityFilter);
+        //cas 认证后回调拦截器
+        CallbackFilter callbackFilter = new CallbackFilter();
+        callbackFilter.setConfig(config);
+        callbackFilter.setDefaultUrl(projectUrl);
+        filters.put("callbackFilter", callbackFilter);
+        // 注销 拦截器
+        LogoutFilter logoutFilter = new LogoutFilter();
+        logoutFilter.setConfig(config);
+        logoutFilter.setCentralLogout(true);
+        logoutFilter.setLocalLogout(true);
+        logoutFilter.setDefaultUrl(projectUrl + "/callback?client_name=" + clientName);
+        System.out.println("【重要设置】projectUrl="+projectUrl + "/callback?client_name=" + clientName);
+        System.out.println("【重要设置】clientName="+clientName);
+        System.out.println("【重要设置】casServerUrl="+casServerUrl);
+        filters.put("logout",logoutFilter);
+        shiroFilterFactoryBean.setFilters(filters);
+        ///////////////////////////////
+
+
+
+
+
+
+
+
+
+//
+//        // setLoginUrl 如果不设置值，默认会自动寻找Web工程根目录下的"/login.jsp"页面 或 "/login" 映射
+//        shiroFilterFactoryBean.setLoginUrl("/guest/login");
+//        // 无权限时 跳转的
+//        shiroFilterFactoryBean.setUnauthorizedUrl("/authc/notrole");
+//        // 登录成功
+//        shiroFilterFactoryBean.setSuccessUrl("/login-success");
+//
+//        // 设置拦截器 LinkedHashMap 注意顺序
+//        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+//
+//
+//        // 设置过滤器内容
+//        buildFilterChainDefinitionMap(filterChainDefinitionMap);
+//
+//        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+//
+        log.info("Shiro拦截器工厂类注入成功");
+        return shiroFilterFactoryBean;
+    }
+
+
     /**
      * 2018年11月29日 23:16:29
      * 为了启动模版对标签支持 引入配置
@@ -294,56 +424,6 @@ public class ShiroConfig {
     }*/
 
 
-    /**
-     * 过滤器默认权限表
-     * {
-     *    anon=anon 匿名访问,
-     *    authc=authc,
-     *    authcBasic=authcBasic,
-     *    logout=logout 登出,
-     *    noSessionCreation=noSessionCreation,
-     *    perms=perms,
-     *    port=port,
-     *    rest=rest,
-     *    roles=roles,
-     *    ssl=ssl,
-     *    user=user }
-     *
-     * anon, authc, authcBasic, user 是第一组认证过滤器
-     * perms, port, rest, roles, ssl 是第二组授权过滤器
-     *
-     * user 和 authc 的不同：
-     * 当应用开启了rememberMe时, 用户下次访问时可以是一个user, 但绝不会是authc,
-     * 因为authc是需要重新认证的, user表示用户不一定已通过认证,
-     * 只要曾被Shiro记住过登录状态的用户就可以正常发起请求,比如rememberMe
-     * 以前的一个用户登录时开启了rememberMe, 然后他关闭浏览器, 下次再访问时他就是一个user, 而不会authc
-     *
-     * @param securityManager 初始化 ShiroFilterFactoryBean 的时候需要注入 SecurityManager
-     */
-    @Bean
-    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
-
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        // 必须设置 SecurityManager
-        shiroFilterFactoryBean.setSecurityManager(securityManager);
-        // setLoginUrl 如果不设置值，默认会自动寻找Web工程根目录下的"/login.jsp"页面 或 "/login" 映射
-        shiroFilterFactoryBean.setLoginUrl("/guest/login");
-        // 无权限时 跳转的
-        shiroFilterFactoryBean.setUnauthorizedUrl("/authc/notrole");
-        // 登录成功
-        shiroFilterFactoryBean.setSuccessUrl("/login-success");
-
-        // 设置拦截器 LinkedHashMap 注意顺序
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-
-
-        // 设置过滤器内容
-        buildFilterChainDefinitionMap(filterChainDefinitionMap);
-
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-        log.info("Shiro拦截器工厂类注入成功");
-        return shiroFilterFactoryBean;
-    }
 
     /**
      * 设置过滤器 内容
