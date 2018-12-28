@@ -44,7 +44,8 @@ public class ShiroConfig {
     @Bean
     public LdapContextFactory ldapContextFactory() {
         JndiLdapContextFactory factory = new JndiLdapContextFactory();
-        factory.setUrl("ldap:182.119.168.147:1389");
+        factory.setUrl("ldap:127.0.0.1:1389");
+//        factory.setUrl("ldap:182.119.168.147:1389");
         factory.setPoolingEnabled(true);
         return factory;
     }
@@ -65,19 +66,15 @@ public class ShiroConfig {
 
 
 
-
-
     /**
      * 身份认证Realm，此处的注入不可以缺少。否则会在UserRealm中注入对象会报空指针.
      *
      * @return
      */
-    @Bean(name = "myShiroRealm")
-    @DependsOn("lifecycleBeanPostProcessor")
+    @Bean
     public CustomRealm myRealm1() {
         return new CustomRealm();
     }
-
 
 
     /**
@@ -256,6 +253,7 @@ public class ShiroConfig {
         //管理员，需要角色权限 “admin”
 //        filterChainDefinitionMap.put("/admin/**", "roles[admin]");
         //开放登陆接口
+/*
         filterChainDefinitionMap.put("/swagger-ui.html**","anon");
         filterChainDefinitionMap.put("/guest/*", "anon");
         filterChainDefinitionMap.put("/shiro/register", "anon");
@@ -268,6 +266,9 @@ public class ShiroConfig {
 
         //主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
         filterChainDefinitionMap.put("/**", "authc");
+*/
+
+
     }
 
 //
