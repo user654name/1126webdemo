@@ -42,7 +42,7 @@ public class MyLdapRealm extends DefaultLdapRealm {
                 suffix = ",ou=partner,ou=People,o=bankcomm.com,o=bankcomm";
             } else {
                 // 不包含sdc后缀的用户名拼凑相应内容
-                suffix = "ou=People,o=bankcomm.com,o=bankcomm\"";
+                suffix = "ou=People,o=bankcomm.com,o=bankcomm";
             }
             if (prefix == null && suffix == null) {
                 log.debug("userDnTemplate property has not been configured, indicating the submitted AuthenticationToken's principal is the same as the User DN.  Returning the method argument as is.");

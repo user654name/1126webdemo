@@ -2,17 +2,25 @@ package com.bankcomm.shirodemo.config;
 
 
 import com.bankcomm.shirodemo.shiro.MyLdapRealm;
+import com.bankcomm.shirodemo.shiro.realm.CasRealm;
 import com.bankcomm.shirodemo.shiro.realm.CustomRealm;
+import io.buji.pac4j.subject.Pac4jSubjectFactory;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.ldap.JndiLdapContextFactory;
 import org.apache.shiro.realm.ldap.LdapContextFactory;
+import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
+import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -35,6 +43,29 @@ import java.util.Map;
 public class ShiroConfig {
 
     private final Logger log = LoggerFactory.getLogger(ShiroConfig.class);
+
+
+    /**
+     * 项目工程路径
+     */
+    @Value("${cas.project.url}")
+    private String projectUrl;
+
+    /**
+     * 项目cas服务路径
+     */
+    @Value("${cas.server.url}")
+    private String casServerUrl;
+
+    /**
+     * 客户端名称
+     */
+    @Value("${cas.client-name}")
+    private String clientName;
+
+
+
+
 
     /**
      * Ldap链接等配置
@@ -64,6 +95,14 @@ public class ShiroConfig {
     }
 
 
+    /**
+     * CAS Realm
+     * 配置好放入securityManager
+     */
+    @Bean
+    public CasRealm myRealm3() {
+        return new CasRealm();
+    }
 
 
     /**
@@ -78,13 +117,66 @@ public class ShiroConfig {
 
 
     /**
+     * 使用 pac4j 的 subjectFactory
+     *
+     * @return
+     */
+    @Bean
+    public Pac4jSubjectFactory subjectFactory() {
+        return new Pac4jSubjectFactory();
+    }
+
+
+    /**
+     * SessionDAO
+     */
+    @Bean
+    public SessionDAO sessionDAO() {
+        return new MemorySessionDAO();
+    }
+
+    /**
+     * SimpleCookie
+     * 自定义cookie名称
+     */
+    @Bean
+    public SimpleCookie sessionIdCookie() {
+        SimpleCookie cookie = new SimpleCookie("sid");
+        cookie.setMaxAge(-1);
+        cookie.setPath("/");
+        cookie.setHttpOnly(false);
+        return cookie;
+    }
+
+    /**
+     * SessionManager
+     *
+     * @param sessionIdCookie
+     * @param sessionDAO
+     */
+    @Bean
+    public DefaultWebSessionManager sessionManager() {
+        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+        sessionManager.setSessionIdCookie(sessionIdCookie());
+        sessionManager.setSessionIdCookieEnabled(true);
+        //30分钟
+        sessionManager.setGlobalSessionTimeout(180000);
+        sessionManager.setSessionDAO(sessionDAO());
+        sessionManager.setDeleteInvalidSessions(true);
+        sessionManager.setSessionValidationSchedulerEnabled(true);
+        return sessionManager;
+    }
+
+    /**
+     * 2018年12月28日 17:05:31 将接口改为实现类DefaultWebSecurityManager
+     *
      * 注入 securityManager
      *
      * @param customRealm 【重要】securityManager依赖于这个参数，若不实现，项目无法启动
      * @return
      */
     @Bean
-    public SecurityManager securityManager() {
+    public DefaultWebSecurityManager securityManager() {
 
 //        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
 //        DefaultWebSecurityManager securityManager = (DefaultWebSecurityManager) factory.getInstance();
@@ -97,13 +189,24 @@ public class ShiroConfig {
 //        securityManager.setRealm(myShiroRealm());
         List realms = new ArrayList();
         realms.add(myRealm1());
-        realms.add(myRealm2());
+//        realms.add(myRealm2());
+        realms.add(myRealm3());
         securityManager.setRealms(realms);
+        securityManager.setSubjectFactory(subjectFactory());
+        securityManager.setSessionManager(sessionManager());
         return securityManager;
     }
 
-
-
+    /**
+     * CAS 添加 securityManager
+     * @param securityManager
+     */
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor() {
+        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+        advisor.setSecurityManager(securityManager());
+        return advisor;
+    }
 
     /**
      * 2018年11月29日 23:16:29
@@ -168,8 +271,10 @@ public class ShiroConfig {
     @DependsOn("lifecycleBeanPostProcessor")
     public DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator() {
         DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxy = new DefaultAdvisorAutoProxyCreator();
+        // 强制使用cglib，防止重复代理和可能引起代理出错的问题
         defaultAdvisorAutoProxy.setProxyTargetClass(true);
         log.info("开启AOP自动代理，扫描切入点 ShiroConfig.getDefaultAdvisorAutoProxyCreator");
+
         return defaultAdvisorAutoProxy;
     }
 
@@ -287,6 +392,7 @@ public class ShiroConfig {
 //        log.info("当前Realms情况为myShiroRealms = " + myShiroRealms);
 //        return myShiroRealms;
 //    }
+
 
 
     /**

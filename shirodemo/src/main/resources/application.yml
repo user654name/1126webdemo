@@ -10,6 +10,13 @@ spring:
     cache: true
     prefix: classpath:/templates/
     mode: HTML
+cas:
+  client-name: client1
+  server:
+    url: http://127.0.0.1:80
+  project:
+    url: http://127.0.0.1:10033
+
 #    suffix: .html
 #mybatis:
 #  config-location:
