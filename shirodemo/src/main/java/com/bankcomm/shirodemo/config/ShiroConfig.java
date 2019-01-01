@@ -279,7 +279,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         // 添加casFilter到shiroFilter中
-        loadShiroCasFilterChain(shiroFilterFactoryBean);
+        loadShiroCasFilterChain(shiroFilterFactoryBean) ;
 
 
 
