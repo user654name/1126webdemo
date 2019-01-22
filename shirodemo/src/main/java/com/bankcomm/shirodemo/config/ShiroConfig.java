@@ -229,7 +229,8 @@ public class ShiroConfig {
      * @param shiroFilterFactoryBean
      */
     private void loadShiroCasFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean){
-        /*下面这些规则配置最好配置到配置文件中 */
+        /*下面这些规则配置最好配置到配置文件中 【注意顺序】*/
+
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/", "securityFilter");
         filterChainDefinitionMap.put("/application/**", "securityFilter");
@@ -257,6 +258,25 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager,Config config) {
 
 
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+        System.out.println("【测试！！！！】"+clientName);
+        System.out.println("【测试！！！！】"+projectUrl);
+        System.out.println("【测试！！！！】"+casServerUrl);
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+        System.out.println("-----------------------------");
+
+
+
+        /**
+         * 由于LifecycleBeanPostProcessor的存在 无法读取配置信息
+         */
         clientName="client0";
         projectUrl="http://www.ssoclient2.com:10033";
         casServerUrl = "http://www.cas.com:9090";
@@ -389,8 +409,7 @@ public class ShiroConfig {
      * @return
      */
     @Bean(name = "lifecycleBeanPostProcessor")
-    public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
-        log.info("生命周期管理配置OK-ShiroConfig.getLifecycleBeanPostProcessor");
+    public static LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
     }
 
