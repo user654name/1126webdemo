@@ -23,5 +23,6 @@ public class CallbackFilter extends io.buji.pac4j.filter.CallbackFilter {
                          FilterChain filterChain)
             throws IOException, ServletException {
         super.doFilter(servletRequest, servletResponse, filterChain);
+
     }
 }

@@ -46,15 +46,28 @@ public class CasRealm extends Pac4jRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        final Pac4jToken pac4jToken = (Pac4jToken) authenticationToken;
-        final List<CommonProfile> commonProfileList = pac4jToken.getProfiles();
-        final CommonProfile commonProfile = commonProfileList.get(0);
-        System.out.println("单点登录返回的信息" + commonProfile.toString());
-        //todo
-        final Pac4jPrincipal principal = new Pac4jPrincipal(commonProfileList, getPrincipalNameAttribute());
-        final PrincipalCollection principalCollection = new SimplePrincipalCollection(principal, getName());
-        return new SimpleAuthenticationInfo(principalCollection, commonProfileList.hashCode());
+
+        System.out.println("================ = ");
+        Pac4jToken token = (Pac4jToken) authenticationToken;
+        List<CommonProfile> profiles = token.getProfiles();
+        Pac4jPrincipal principal = new Pac4jPrincipal(profiles);
+        PrincipalCollection principalCollection = new SimplePrincipalCollection(principal, this.getName());
+        return new SimpleAuthenticationInfo(principalCollection, profiles.hashCode());
+
     }
+
+
+//        System.out.print("进入");
+//        System.out.println("authenticationToken = " + authenticationToken);
+//        Pac4jToken pac4jToken = (Pac4jToken) authenticationToken;
+//        final List<CommonProfile> commonProfileList = pac4jToken.getProfiles();
+//        final CommonProfile commonProfile = commonProfileList.get(0);
+//        System.out.println("单点登录返回的信息" + commonProfile.toString());
+//        //todo
+//        final Pac4jPrincipal principal = new Pac4jPrincipal(commonProfileList, getPrincipalNameAttribute());
+//        final PrincipalCollection principalCollection = new SimplePrincipalCollection(principal, getName());
+//        return new SimpleAuthenticationInfo(principalCollection, commonProfileList.hashCode());
+//    }
 
     /**
      * 授权/验权（todo 后续有权限在此增加）

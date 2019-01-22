@@ -23,6 +23,7 @@ import javax.naming.ldap.LdapContext;
 /**
  * 用于使用Ldap的目录数据库的Realm
  */
+@Deprecated
 @Component
 public class MyLdapRealm extends DefaultLdapRealm {
 

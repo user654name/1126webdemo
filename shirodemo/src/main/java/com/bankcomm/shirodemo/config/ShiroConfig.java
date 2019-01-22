@@ -66,11 +66,11 @@ public class ShiroConfig {
     @Value("${cas.client-name}")
     private String clientName;
 
-    /**
+    /*    *//**
      * Ldap链接等配置
      *
      * 配置好放入自定Realm
-     */
+     *//*
     @Bean
     public LdapContextFactory ldapContextFactory() {
         JndiLdapContextFactory factory = new JndiLdapContextFactory();
@@ -78,20 +78,8 @@ public class ShiroConfig {
 //        factory.setUrl("ldap:182.119.168.147:1389");
         factory.setPoolingEnabled(true);
         return factory;
-    }
+    }*/
 
-    /**
-     * 用于Ldap的自定Realm
-     *
-     * 配置好放入securityManager
-     */
-    @Bean
-    public MyLdapRealm myRealm2() {
-        MyLdapRealm myLdapRealm = new MyLdapRealm();
-        // 将Ldap配置放入
-        myLdapRealm.setContextFactory(ldapContextFactory());
-        return myLdapRealm;
-    }
 
 
     /**
@@ -99,19 +87,8 @@ public class ShiroConfig {
      * 配置好放入securityManager
      */
     @Bean
-    public CasRealm myRealm3() {
+    public CasRealm myRealm1() {
         return new CasRealm();
-    }
-
-
-    /**
-     * 身份认证Realm，此处的注入不可以缺少。否则会在UserRealm中注入对象会报空指针.
-     *
-     * @return
-     */
-    @Bean
-    public CustomRealm myRealm1() {
-        return new CustomRealm();
     }
 
 
@@ -189,7 +166,7 @@ public class ShiroConfig {
         List realms = new ArrayList();
         realms.add(myRealm1());
 //        realms.add(myRealm2());
-        realms.add(myRealm3());
+//        realms.add(myRealm3());
         securityManager.setRealms(realms);
         securityManager.setSubjectFactory(subjectFactory());
         securityManager.setSessionManager(sessionManager());
@@ -225,24 +202,7 @@ public class ShiroConfig {
 
 
     /**
-     * 加载shiroFilter权限控制规则（从数据库读取然后配置）
-     * @param shiroFilterFactoryBean
-     */
-    private void loadShiroCasFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean){
-        /*下面这些规则配置最好配置到配置文件中 */
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/", "securityFilter");
-        filterChainDefinitionMap.put("/application/**", "securityFilter");
-        filterChainDefinitionMap.put("/index", "securityFilter");
-        filterChainDefinitionMap.put("/callback", "callbackFilter");
-        filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/**","anon");
-        // filterChainDefinitionMap.put("/user/edit/**", "authc,perms[user:edit]");
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-    }
-
-    /**
-     * 过滤器默认权限表
+     *      * 过滤器默认权限表
      * {
      *    anon=anon 匿名访问,
      *    authc=authc,
@@ -265,6 +225,32 @@ public class ShiroConfig {
      * 只要曾被Shiro记住过登录状态的用户就可以正常发起请求,比如rememberMe
      * 以前的一个用户登录时开启了rememberMe, 然后他关闭浏览器, 下次再访问时他就是一个user, 而不会authc
      *
+     * 加载shiroFilter权限控制规则（从数据库读取然后配置）
+     * @param shiroFilterFactoryBean
+     */
+    private void loadShiroCasFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean){
+        /*下面这些规则配置最好配置到配置文件中 */
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+        filterChainDefinitionMap.put("/", "securityFilter");
+        filterChainDefinitionMap.put("/application/**", "securityFilter");
+        filterChainDefinitionMap.put("/index", "securityFilter");
+        filterChainDefinitionMap.put("/callback", "callbackFilter");
+        filterChainDefinitionMap.put("/logout", "logout");
+        filterChainDefinitionMap.put("/**","anon");
+        // filterChainDefinitionMap.put("/user/edit/**", "authc,perms[user:edit]");
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+    }
+
+    /**
+     * ——————————————————————————————————
+     *      shiro整合cas 需要配置——
+     *      1 SecurityManager shiro核心
+     *      2 FilterChainDefiniteMap shiro原生过滤器（与cas整合）
+     *      3 Filters --Cas过滤器
+     *           3.1 security 资源认证过滤器
+     *           3.2 callback 回调过滤器
+     *           3.3 logout   登出过滤器
+     * ——————————————————————————————————
      * @param securityManager 初始化 ShiroFilterFactoryBean 的时候需要注入 SecurityManager
      */
     @Bean("shiroFilter")
@@ -273,7 +259,7 @@ public class ShiroConfig {
 
         clientName="client0";
         projectUrl="http://www.ssoclient2.com:10033";
-        casServerUrl="http://www.cas.com";
+        casServerUrl = "http://www.cas.com:9090";
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         // 必须设置 SecurityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
@@ -306,9 +292,7 @@ public class ShiroConfig {
         System.out.println("【重要设置】casServerUrl="+casServerUrl);
         filters.put("logout",logoutFilter);
         shiroFilterFactoryBean.setFilters(filters);
-        ///////////////////////////////
-
-
+        /////////////////////
 
 
 

@@ -4,6 +4,8 @@ import com.bankcomm.shirodemo.shiro.pac4j.MyCasClient;
 import io.buji.pac4j.context.ShiroSessionStore;
 import org.pac4j.cas.config.CasConfiguration;
 import org.pac4j.cas.config.CasProtocol;
+import org.pac4j.cas.logout.CasLogoutHandler;
+import org.pac4j.cas.logout.DefaultCasLogoutHandler;
 import org.pac4j.core.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,24 +38,8 @@ public class Pac4jConfig {
     @Autowired
     private com.bankcomm.shirodemo.shiro.pac4j.MyCasClient myCasClient;
 
-    /**
-     *  pac4j配置
-     * @param myCasClient
-     * @param shiroSessionStore
-     * @return
-     */
-    @Bean("authcConfig")
-    public Config config(ShiroSessionStore shiroSessionStore) {
-        System.out.println("myCasClient = " + myCasClient);
-        boolean flag1 = myCasClient == null;
-        System.out.println("myCasClient注入失败？flag1 = " + flag1);
-        Config config = new Config(myCasClient);
-        System.out.println("config = " + config);
-        boolean flag = config == null;
-        System.out.println("config注入失败？flag = " + flag);
-        config.setSessionStore(shiroSessionStore);
-        return config;
-    }
+
+
 
     /**
      * 自定义存储
@@ -63,6 +49,36 @@ public class Pac4jConfig {
     public ShiroSessionStore shiroSessionStore(){
         return new ShiroSessionStore();
     }
+
+
+
+    /**
+     * pac4j配置
+     *
+     * @param myCasClient
+     * @param shiroSessionStore
+     * @return
+     */
+    @Bean("authcConfig")
+    public Config config(ShiroSessionStore shiroSessionStore) {
+        {
+            // 可以删除
+            System.out.println("myCasClient = " + myCasClient);
+            boolean flag1 = myCasClient == null;
+            System.out.println("myCasClient注入失败？false代表注入成功 = " + flag1);
+        }
+        Config config = new Config(myCasClient);
+        {
+            // 可以删除
+            System.out.println("config = " + config);
+            boolean flag = config == null;
+            System.out.println("config注入失败？flag = " + flag);
+        }
+        config.setSessionStore(shiroSessionStore);
+        return config;
+    }
+
+
 
     /**
      * cas 客户端配置
@@ -81,8 +97,21 @@ public class Pac4jConfig {
         return casClient;
     }
 
-
-
+//
+//    /**
+//     * 临时添加（会出错）
+//     * @return
+//     */
+//    @Bean
+//    public CasLogoutHandler casLogoutHandler(){
+//
+//        CasLogoutHandler casLogoutHandler=new DefaultCasLogoutHandler();
+//        casLogoutHandler.destroySessionBack(null,null);
+//        casLogoutHandler.destroySessionFront(null,null);
+//        casLogoutHandler.recordSession(null,null);
+//        casLogoutHandler.renewSession(null,null);
+//        return casLogoutHandler;
+//    }
 
     /**
      * 请求cas服务端配置
@@ -94,7 +123,7 @@ public class Pac4jConfig {
         //CAS server登录地址
         configuration.setLoginUrl(casServerUrl + "/login");
         //CAS 版本，默认为 CAS30，我们使用的是 CAS20
-        configuration.setProtocol(CasProtocol.CAS20);
+        configuration.setProtocol(CasProtocol.CAS30);
         configuration.setAcceptAnyProxy(true);
         configuration.setPrefixUrl(casServerUrl + "/");
         return configuration;

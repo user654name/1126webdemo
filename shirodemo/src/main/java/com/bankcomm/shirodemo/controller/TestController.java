@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
-import static at.pollux.thymeleaf.shiro.processor.ShiroFacade.isAuthenticated;
 
 /**
  * @author Tianqi.Zhang

@@ -9,7 +9,6 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.realm.ldap.DefaultLdapRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
@@ -32,6 +31,7 @@ import java.util.Set;
  * 必须配置组件注解(@Component作为组件提供给Spring-IoC管理)
  * 注入SecurityManager时，依赖这个Realm实现类
  */
+@Deprecated
 @Component
 public class CustomRealm extends AuthorizingRealm {
 

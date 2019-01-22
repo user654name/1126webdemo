@@ -16,6 +16,7 @@ import org.pac4j.core.util.CommonHelper;
  * @project 1126webdemo
  * @description
  */
+//@Component
 public class MyCasClient extends org.pac4j.cas.client.CasClient {
     public MyCasClient() {
         super();

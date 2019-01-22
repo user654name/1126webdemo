@@ -13,7 +13,7 @@ spring:
 cas:
   client-name: client0
   server:
-    url: http://www.cas.com:8080/cas
+    url: http://www.cas.com:9090
   project:
     url: http://www.ssoclient2.com:10033
 
