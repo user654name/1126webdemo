@@ -36,7 +36,7 @@ import javax.servlet.Filter;
 import java.util.*;
 
 /**
- *Ldap的Realm也配置在这里
+ * 因为配置了 LifecycleBeanPostProcessor 所以无法读取yml文件
  *
  * @author Tianqi.Zhang
  * @date 2018/11/26
@@ -270,7 +270,10 @@ public class ShiroConfig {
 
 
         ///////////////////////////////
-        Map<String, Filter> filters = new HashMap<>(3);
+        /**
+         * 改为LinkedMap
+         */
+        Map<String, Filter> filters = new LinkedHashMap<>(3);
         //cas 资源认证拦截器
         SecurityFilter securityFilter = new SecurityFilter();
         securityFilter.setConfig(config);
@@ -283,13 +286,28 @@ public class ShiroConfig {
         filters.put("callbackFilter", callbackFilter);
         // 注销 拦截器
         LogoutFilter logoutFilter = new LogoutFilter();
+        /**
+         * 配置了Config Config中包含shiroSessionStore
+         * 当前（2019年1月22日 11:05:25）没有什么重要信息
+         */
         logoutFilter.setConfig(config);
+        // setCentralLogout——whether the centralLogout must be performed
         logoutFilter.setCentralLogout(true);
+        // setLocalLogout——whether the application logout must be performed
         logoutFilter.setLocalLogout(true);
         logoutFilter.setDefaultUrl(projectUrl + "/callback?client_name=" + clientName);
         System.out.println("【重要设置】projectUrl="+projectUrl + "/callback?client_name=" + clientName);
         System.out.println("【重要设置】clientName="+clientName);
         System.out.println("【重要设置】casServerUrl="+casServerUrl);
+        /**
+         * 【尝试】2019年1月22日 11:21:43
+         *  因为cas文档默认开启全局单点登出——
+         *  怀疑可能是因为pac4j和buji等的【客户端】原因
+         *  因此尝试不在配置登出过滤器
+         *  看看能不能实现单点登出
+         *  【结论】若注释掉则不能登出
+         * 【尝试】设置空的登出uFilter
+         */
         filters.put("logout",logoutFilter);
         shiroFilterFactoryBean.setFilters(filters);
         /////////////////////

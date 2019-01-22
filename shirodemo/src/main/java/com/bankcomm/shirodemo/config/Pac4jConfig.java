@@ -4,8 +4,6 @@ import com.bankcomm.shirodemo.shiro.pac4j.MyCasClient;
 import io.buji.pac4j.context.ShiroSessionStore;
 import org.pac4j.cas.config.CasConfiguration;
 import org.pac4j.cas.config.CasProtocol;
-import org.pac4j.cas.logout.CasLogoutHandler;
-import org.pac4j.cas.logout.DefaultCasLogoutHandler;
 import org.pac4j.core.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -61,19 +59,7 @@ public class Pac4jConfig {
      */
     @Bean("authcConfig")
     public Config config(ShiroSessionStore shiroSessionStore) {
-        {
-            // 可以删除
-            System.out.println("myCasClient = " + myCasClient);
-            boolean flag1 = myCasClient == null;
-            System.out.println("myCasClient注入失败？false代表注入成功 = " + flag1);
-        }
         Config config = new Config(myCasClient);
-        {
-            // 可以删除
-            System.out.println("config = " + config);
-            boolean flag = config == null;
-            System.out.println("config注入失败？flag = " + flag);
-        }
         config.setSessionStore(shiroSessionStore);
         return config;
     }
@@ -115,7 +101,7 @@ public class Pac4jConfig {
 
     /**
      * 请求cas服务端配置
-     * @param casLogoutHandler
+     * @param casLogoutHandler ？？？？？
      */
     @Bean
     public CasConfiguration casConfig(){
