@@ -257,38 +257,12 @@ public class ShiroConfig {
     @Bean("shiroFilter")
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager,Config config) {
 
-
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("【测试！！！！】"+clientName);
-        System.out.println("【测试！！！！】"+projectUrl);
-        System.out.println("【测试！！！！】"+casServerUrl);
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-        System.out.println("-----------------------------");
-
-
-
-        /**
-         * 由于LifecycleBeanPostProcessor的存在 无法读取配置信息
-         */
-        clientName="client0";
-        projectUrl="http://www.ssoclient2.com:10033";
-        casServerUrl = "http://www.cas.com:9090";
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         // 必须设置 SecurityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         // 添加casFilter到shiroFilter中
         loadShiroCasFilterChain(shiroFilterFactoryBean) ;
-
-
-
         ///////////////////////////////
         /**
          * 改为LinkedMap
@@ -316,9 +290,12 @@ public class ShiroConfig {
         // setLocalLogout——whether the application logout must be performed
         logoutFilter.setLocalLogout(true);
         logoutFilter.setDefaultUrl(projectUrl + "/callback?client_name=" + clientName);
-        System.out.println("【重要设置】projectUrl="+projectUrl + "/callback?client_name=" + clientName);
-        System.out.println("【重要设置】clientName="+clientName);
-        System.out.println("【重要设置】casServerUrl="+casServerUrl);
+        {
+            // 调试输出 可能配置文件读取失败
+            System.out.println("【重要设置，若为空，说明配置文件读取失败】projectUrl=" + projectUrl + "/callback?client_name=" + clientName);
+            System.out.println("【重要设置，若为空，说明配置文件读取失败】clientName=" + clientName);
+            System.out.println("【重要设置，若为空，说明配置文件读取失败】casServerUrl=" + casServerUrl);
+        }
         /**
          * 【尝试】2019年1月22日 11:21:43
          *  因为cas文档默认开启全局单点登出——

@@ -5,6 +5,7 @@ import io.buji.pac4j.context.ShiroSessionStore;
 import org.pac4j.cas.config.CasConfiguration;
 import org.pac4j.cas.config.CasProtocol;
 import org.pac4j.core.config.Config;
+import org.pac4j.core.context.J2EContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -40,12 +41,16 @@ public class Pac4jConfig {
 
 
     /**
-     * 自定义存储
-     * @return
+     * 每次项目登出报错——
+     * No trackable session found for back channel logout.
+     * Either the session store does not support to track session
+     * or it has expired from the store
+     * and the store settings must be updated (expired data)
      */
     @Bean
     public ShiroSessionStore shiroSessionStore(){
-        return new ShiroSessionStore();
+        ShiroSessionStore shiroSessionStore = new ShiroSessionStore();
+        return shiroSessionStore;
     }
 
 
@@ -76,7 +81,6 @@ public class Pac4jConfig {
     public MyCasClient casClient(CasConfiguration casConfig) {
         MyCasClient casClient = new MyCasClient(casConfig);
         String backUrl = projectUrl + "/callback?client_name=" + clientName;
-        System.out.println("【回调地址】backUrl = " + backUrl);
         //客户端回调地址
         casClient.setCallbackUrl(backUrl);
         casClient.setName(clientName);
