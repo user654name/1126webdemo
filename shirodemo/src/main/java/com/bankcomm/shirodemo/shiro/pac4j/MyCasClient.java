@@ -6,7 +6,6 @@ import org.pac4j.core.context.Pac4jConstants;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.context.session.SessionStore;
 import org.pac4j.core.redirect.RedirectAction;
-import org.pac4j.core.util.CommonHelper;
 
 /**
  * @author Tianqi.Zhang
@@ -33,24 +32,25 @@ public class MyCasClient extends org.pac4j.cas.client.CasClient {
 
     @Override
     public RedirectAction getRedirectAction(WebContext context) {
-        this.init();
-        if (getAjaxRequestResolver().isAjax(context)) {
-            this.logger.info("AJAX request detected -> returning the appropriate action");
-            RedirectAction action = getRedirectActionBuilder().redirect(context);
-            this.cleanRequestedUrl(context);
-            return getAjaxRequestResolver().buildAjaxResponse(action.getLocation(), context);
-        } else {
-            final String attemptedAuth = (String)context.getSessionStore().get(context, this.getName() + ATTEMPTED_AUTHENTICATION_SUFFIX);
-            if (CommonHelper.isNotBlank(attemptedAuth)) {
-                this.cleanAttemptedAuthentication(context);
-                this.cleanRequestedUrl(context);
-                //这里按自己需求处理，默认是返回了401，我在这边改为跳转到cas登录页面
-                //throw HttpAction.unauthorized(context);
-                return this.getRedirectActionBuilder().redirect(context);
-            } else {
-                return this.getRedirectActionBuilder().redirect(context);
-            }
-        }
+        return super.getRedirectAction(context);
+//        this.init();
+//        if (getAjaxRequestResolver().isAjax(context)) {
+//            this.logger.info("AJAX request detected -> returning the appropriate action");
+//            RedirectAction action = getRedirectActionBuilder().redirect(context);
+//            this.cleanRequestedUrl(context);
+//            return getAjaxRequestResolver().buildAjaxResponse(action.getLocation(), context);
+//        } else {
+//            final String attemptedAuth = (String)context.getSessionStore().get(context, this.getName() + ATTEMPTED_AUTHENTICATION_SUFFIX);
+//            if (CommonHelper.isNotBlank(attemptedAuth)) {
+//                this.cleanAttemptedAuthentication(context);
+//                this.cleanRequestedUrl(context);
+//                //这里按自己需求处理，默认是返回了401，我在这边改为跳转到cas登录页面
+//                //throw HttpAction.unauthorized(context);
+//                return this.getRedirectActionBuilder().redirect(context);
+//            } else {
+//                return this.getRedirectActionBuilder().redirect(context);
+//            }
+//        }
     }
 
     private void cleanRequestedUrl(WebContext context) {

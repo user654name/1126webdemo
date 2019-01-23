@@ -1,17 +1,14 @@
 package com.bankcomm.shirodemo.config;
 
 
-import com.bankcomm.shirodemo.shiro.MyLdapRealm;
 import com.bankcomm.shirodemo.shiro.realm.CasRealm;
-import com.bankcomm.shirodemo.shiro.realm.CustomRealm;
 import io.buji.pac4j.filter.CallbackFilter;
 import io.buji.pac4j.filter.LogoutFilter;
 import io.buji.pac4j.filter.SecurityFilter;
 import io.buji.pac4j.subject.Pac4jSubjectFactory;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.realm.ldap.JndiLdapContextFactory;
-import org.apache.shiro.realm.ldap.LdapContextFactory;
+import org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator;
 import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -33,7 +30,10 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 因为配置了 LifecycleBeanPostProcessor 所以无法读取yml文件
@@ -117,10 +117,15 @@ public class ShiroConfig {
      */
     @Bean
     public SimpleCookie sessionIdCookie() {
-        SimpleCookie cookie = new SimpleCookie("sid");
-        cookie.setMaxAge(-1);
+        SimpleCookie cookie = new SimpleCookie("CasCookie");
+        // 30*60 即为30分钟
+        cookie.setMaxAge(30 * 60);
         cookie.setPath("/");
         cookie.setHttpOnly(false);
+        /**
+         * 只能通过HTTPS访问Cookie
+         */
+        cookie.setSecure(false);
         return cookie;
     }
 
@@ -230,14 +235,16 @@ public class ShiroConfig {
      */
     private void loadShiroCasFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean){
         /*下面这些规则配置最好配置到配置文件中 【注意顺序】*/
-
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+//        filterChainDefinitionMap.put("/", "securityFilter");
         filterChainDefinitionMap.put("/", "securityFilter");
-        filterChainDefinitionMap.put("/application/**", "securityFilter");
-        filterChainDefinitionMap.put("/index", "securityFilter");
+        filterChainDefinitionMap.put("/aaa", "securityFilter");
+        filterChainDefinitionMap.put("/index.html", "securityFilter");
+//        filterChainDefinitionMap.put("/application/**", "securityFilter");
+//        filterChainDefinitionMap.put("/**", "securityFilter");
         filterChainDefinitionMap.put("/callback", "callbackFilter");
         filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/**","anon");
+//        filterChainDefinitionMap.put("/**","anon");
         // filterChainDefinitionMap.put("/user/edit/**", "authc,perms[user:edit]");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
@@ -292,9 +299,9 @@ public class ShiroConfig {
         logoutFilter.setDefaultUrl(projectUrl + "/callback?client_name=" + clientName);
         {
             // 调试输出 可能配置文件读取失败
-            System.out.println("【重要设置，若为空，说明配置文件读取失败】projectUrl=" + projectUrl + "/callback?client_name=" + clientName);
-            System.out.println("【重要设置，若为空，说明配置文件读取失败】clientName=" + clientName);
-            System.out.println("【重要设置，若为空，说明配置文件读取失败】casServerUrl=" + casServerUrl);
+            System.out.println("【重要设置，若为空，说明配置文件读取失败】本项目projectUrl=" + projectUrl + "/callback?client_name=" + clientName);
+            System.out.println("【重要设置，若为空，说明配置文件读取失败】项目名clientName=" + clientName);
+            System.out.println("【重要设置，若为空，说明配置文件读取失败】服务器casServerUrl=" + casServerUrl);
         }
         /**
          * 【尝试】2019年1月22日 11:21:43
@@ -308,13 +315,6 @@ public class ShiroConfig {
         filters.put("logout",logoutFilter);
         shiroFilterFactoryBean.setFilters(filters);
         /////////////////////
-
-
-
-
-
-
-
 //
 //        // setLoginUrl 如果不设置值，默认会自动寻找Web工程根目录下的"/login.jsp"页面 或 "/login" 映射
 //        shiroFilterFactoryBean.setLoginUrl("/guest/login");
@@ -423,53 +423,6 @@ public class ShiroConfig {
 
 
 
-    /**
-     * 设置过滤器 内容
-     *
-     * @param filterChainDefinitionMap
-     */
-    private void buildFilterChainDefinitionMap(Map<String, String> filterChainDefinitionMap) {
-        //游客，开发权限
-//        filterChainDefinitionMap.put("/guest/**", "anon");
-        //用户，需要角色权限 “user”
-//        filterChainDefinitionMap.put("/user/**", "roles[user]");
-        //管理员，需要角色权限 “admin”
-//        filterChainDefinitionMap.put("/admin/**", "roles[admin]");
-        //开放登陆接口
-/*
-        filterChainDefinitionMap.put("/swagger-ui.html**","anon");
-        filterChainDefinitionMap.put("/guest/*", "anon");
-        filterChainDefinitionMap.put("/shiro/register", "anon");
-        filterChainDefinitionMap.put("/shiro/login", "anon");
-        filterChainDefinitionMap.put("/druid/** ", "anon");
-        filterChainDefinitionMap.put("/shiro/logout", "logout");
-        //加入权限页面2018年11月29日 06:12:49
-        filterChainDefinitionMap.put("/admin/adminpage", "roles[admin]");
-        filterChainDefinitionMap.put("/shiro/*", "authc");
-
-        //主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
-        filterChainDefinitionMap.put("/**", "authc");
-*/
-
-
-    }
-
-//
-//    /**
-//     * 将自己的验证方式加入容器
-//     * 2018年11月29日 16:55:26
-//     */
-//    @Bean
-//    @Deprecated
-//    public Collection<Realm> myShiroRealms() {
-//        CustomRealm customRealm = new CustomRealm();
-////        SecondRealm secondRealm = new SecondRealm();
-//        Collection<Realm> myShiroRealms = new HashSet<>();
-//        myShiroRealms.add(customRealm);
-////        myShiroRealms.add(secondRealm);
-//        log.info("当前Realms情况为myShiroRealms = " + myShiroRealms);
-//        return myShiroRealms;
-//    }
 
 
 

@@ -49,7 +49,8 @@ public class Pac4jConfig {
      */
     @Bean
     public ShiroSessionStore shiroSessionStore(){
-        ShiroSessionStore shiroSessionStore = new ShiroSessionStore();
+         ShiroSessionStore shiroSessionStore = new ShiroSessionStore();
+//        shiroSessionStore.buildFromTrackableSession();
         return shiroSessionStore;
     }
 
